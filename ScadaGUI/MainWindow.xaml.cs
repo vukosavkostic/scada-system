@@ -24,5 +24,10 @@ namespace ScadaGUI
         {
             InitializeComponent();
         }
+
+        private void UpdateProduct(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

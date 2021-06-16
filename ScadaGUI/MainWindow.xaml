@@ -5,8 +5,47 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ScadaGUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="#2ba89a"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="MainWindow" Height="600" Width="800" MinHeight="600" MinWidth="800">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="5"/>
+        </Grid.RowDefinitions>
+
+        <DataGrid Grid.Row="1"  Name ="DataGrid" SelectedItem="{Binding SelectedProduct}" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False" Margin="10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Tag ID" Binding="{Binding Id}" Width="*"/>
+                <DataGridTextColumn Header="Address" Binding="{Binding Naziv}" Width="*"/>
+                <DataGridTextColumn Header="Value" Binding="{Binding Cena}" Width="*"/>
+                <DataGridTextColumn Header="Unit" Binding="{Binding Vrsta}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button
+          Style="{StaticResource MaterialDesignRaisedLightButton}"
+          Width="150"
+          Height="25"
+          HorizontalAlignment="Left"
+          Margin="10,0,0,0"
+          ToolTip="Resource name: MaterialDesignRaisedLightButton"
+          Content="ADD NEW TAG"/>
+
+        <ToggleButton
+          Style="{StaticResource MaterialDesignSwitchToggleButton}"
+          HorizontalAlignment="Right"
+          Margin="0,0,20,0"
+          ToolTip="Default ToggleButton Style" />
+        <Label Content="DARK MODE" HorizontalAlignment="Right" Margin="0, 15, 10, 0"/>
+
     </Grid>
 </Window>
