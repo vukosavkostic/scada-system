@@ -23,9 +23,60 @@
             <RowDefinition Height="5"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0">
-            
+        <StackPanel Orientation="Horizontal">
+            <StackPanel Grid.Row="0" HorizontalAlignment="Left" Background="White" Margin="0, 0, 0, 5">
+                <Button
+                    Style="{StaticResource MaterialDesignFlatLightBgButton}"
+                    ToolTip="MaterialDesignFlatLightButton"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Margin="0,8,0,0"
+                    Width="30"
+                    Height="30">
+                    <materialDesign:PackIcon Kind="Plus" HorizontalAlignment="Center" VerticalAlignment="Center" Width="20" Height="20"/>
+                </Button>
+                    <Label Content="Add Tag" 
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    FontWeight="SemiBold"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="0" HorizontalAlignment="Left" Background="White" Margin="5, 0, 0, 5">
+                <ToggleButton
+                      Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Top"
+                      Margin="0,20,0,0"
+                      ToolTip="Default ToggleButton Style" />
+                <Label 
+                    Content="Dark mode" 
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    FontWeight="SemiBold"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="0" HorizontalAlignment="Left" Background="White" Margin="5, 0, 0, 5" Width="50">
+                <Button
+                    Style="{StaticResource MaterialDesignFlatLightBgButton}"
+                    ToolTip="MaterialDesignFlatLightButton"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Margin="0,8,0,0"
+                    Width="30"
+                    Height="30">
+                    <materialDesign:PackIcon Kind="Close" HorizontalAlignment="Center" VerticalAlignment="Center" Height="20" Width="20"/>
+                </Button>
+                <Label 
+                    Content="Exit" 
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    FontWeight="SemiBold"/>
+            </StackPanel>
+
+
         </StackPanel>
+        
+        
 
 
         <DataGrid Grid.Row="2"  Name ="DataGrid"  SelectedItem="{Binding SelectedProduct}" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False">
@@ -40,38 +91,9 @@
         <Rectangle Grid.Row="1" Fill="#cfd8dc" />
         <Label Grid.Row="1" Content="Tag List" Margin="25, 0, 0, 0" HorizontalAlignment="Center"/>
 
-        <materialDesign:PopupBox
-              Style="{StaticResource MaterialDesignMultiFloatingActionPopupBox}"
-              PlacementMode="BottomAndAlignCentres"
-              ToolTipService.Placement="Right"
-              ToolTip="PopupBox, Style MaterialDesignMultiFloatingActionPopupBox"
-              Opened="PopupBox_OnOpened"
-              Closed="PopupBox_OnClosed">
-                        <StackPanel>
-                            <Button
-                  ToolTip="One with custom opacity"
-                  Opacity="0.5"
-                  Content="1" />
-                            <Button
-                  ToolTip="Two"
-                  Content="2" />
-                            <Button
-                  ToolTip="Three"
-                  Content="3" />
-                        </StackPanel>
-        </materialDesign:PopupBox>
 
-        <ToggleButton
-          Style="{StaticResource MaterialDesignSwitchToggleButton}"
-          HorizontalAlignment="Right"
-          Margin="0,20,30,0"
-          ToolTip="Default ToggleButton Style" />
-        <Label 
-            Content="DARK MODE" 
-            HorizontalAlignment="Right" 
-            Margin="0, 0, 10, 0" 
-            FontWeight="Bold" 
-            FontSize="13"/>
+
+
 
     </Grid>
 </Window>
