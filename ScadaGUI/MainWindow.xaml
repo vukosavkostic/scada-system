@@ -11,18 +11,24 @@
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
-        Background="#2ba89a"
+        Background="#efeff1"
         FontFamily="{DynamicResource MaterialDesignFont}"
         Title="MainWindow" Height="600" Width="800" MinHeight="600" MinWidth="800">
 
     <Grid Margin="10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="35"/>
+            <RowDefinition Height="65"/>
+            <RowDefinition Height="25"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="5"/>
         </Grid.RowDefinitions>
 
-        <DataGrid Grid.Row="1"  Name ="DataGrid" SelectedItem="{Binding SelectedProduct}" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False" Margin="10">
+        <StackPanel Grid.Row="0">
+            
+        </StackPanel>
+
+
+        <DataGrid Grid.Row="2"  Name ="DataGrid"  SelectedItem="{Binding SelectedProduct}" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Tag ID" Binding="{Binding Id}" Width="*"/>
                 <DataGridTextColumn Header="Address" Binding="{Binding Naziv}" Width="*"/>
@@ -30,22 +36,42 @@
                 <DataGridTextColumn Header="Unit" Binding="{Binding Vrsta}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
+        
+        <Rectangle Grid.Row="1" Fill="#cfd8dc" />
+        <Label Grid.Row="1" Content="Tag List" Margin="25, 0, 0, 0" HorizontalAlignment="Center"/>
 
-        <Button
-          Style="{StaticResource MaterialDesignRaisedLightButton}"
-          Width="150"
-          Height="25"
-          HorizontalAlignment="Left"
-          Margin="10,0,0,0"
-          ToolTip="Resource name: MaterialDesignRaisedLightButton"
-          Content="ADD NEW TAG"/>
+        <materialDesign:PopupBox
+              Style="{StaticResource MaterialDesignMultiFloatingActionPopupBox}"
+              PlacementMode="BottomAndAlignCentres"
+              ToolTipService.Placement="Right"
+              ToolTip="PopupBox, Style MaterialDesignMultiFloatingActionPopupBox"
+              Opened="PopupBox_OnOpened"
+              Closed="PopupBox_OnClosed">
+                        <StackPanel>
+                            <Button
+                  ToolTip="One with custom opacity"
+                  Opacity="0.5"
+                  Content="1" />
+                            <Button
+                  ToolTip="Two"
+                  Content="2" />
+                            <Button
+                  ToolTip="Three"
+                  Content="3" />
+                        </StackPanel>
+        </materialDesign:PopupBox>
 
         <ToggleButton
           Style="{StaticResource MaterialDesignSwitchToggleButton}"
           HorizontalAlignment="Right"
-          Margin="0,0,20,0"
+          Margin="0,20,30,0"
           ToolTip="Default ToggleButton Style" />
-        <Label Content="DARK MODE" HorizontalAlignment="Right" Margin="0, 15, 10, 0"/>
+        <Label 
+            Content="DARK MODE" 
+            HorizontalAlignment="Right" 
+            Margin="0, 0, 10, 0" 
+            FontWeight="Bold" 
+            FontSize="13"/>
 
     </Grid>
 </Window>
