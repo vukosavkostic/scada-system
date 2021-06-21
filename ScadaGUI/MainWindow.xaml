@@ -13,7 +13,7 @@
         TextOptions.TextRenderingMode="Auto"
         Background="#efeff1"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="MainWindow" Height="600" Width="800" MinHeight="600" MinWidth="800">
+        Title="SCADA" Height="600" Width="800" MinHeight="600" MinWidth="800">
 
     <Grid Margin="10">
         <Grid.RowDefinitions>
@@ -41,6 +41,44 @@
                     VerticalAlignment="Bottom"
                     FontWeight="Regular"/>
             </StackPanel>
+
+            <StackPanel HorizontalAlignment="Left" Background="White" Margin="5, 0, 0, 5">
+                <Button
+                    Style="{StaticResource MaterialDesignFlatLightBgButton}"
+                    ToolTip="MaterialDesignFlatLightButton"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Margin="0,8,0,0"
+                    Width="55"
+                    Height="30"
+                    Click="AddAlarm">
+                    <materialDesign:PackIcon Kind="AlarmLight" />
+                </Button>
+                <Label Content="Add Alarm" 
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    FontWeight="Regular"/>
+            </StackPanel>
+
+            <StackPanel HorizontalAlignment="Left" Background="White" Margin="5, 0, 0, 5">
+                <Button
+                    Style="{StaticResource MaterialDesignFlatLightBgButton}"
+                    ToolTip="MaterialDesignFlatLightButton"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Margin="0,8,0,0"
+                    Width="65"
+                    Height="30"
+                    Click="AlarmHistory">
+                    <materialDesign:PackIcon Kind="History" />
+                </Button>
+                <Label Content="Alarm History" 
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    FontWeight="Regular"/>
+            </StackPanel>
+
+
 
             <StackPanel HorizontalAlignment="Left" Background="White" Margin="5, 0, 0, 5" Width="60">
                 <Button
@@ -82,26 +120,29 @@
                     />
             </StackPanel>
         </StackPanel>
-        
-        
 
+        <materialDesign:Card
+          materialDesign:ShadowAssist.ShadowDepth="Depth2"
+          Padding="32"
+          Grid.Row="2"/>
 
-        <DataGrid Grid.Row="2"  Name ="DataGrid"  SelectedItem="{Binding SelectedProduct}" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False">
+        <DataGrid Grid.Row="2"  Name ="DataGrid"  SelectedItem="{Binding SelectedTag}" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Tag ID" Binding="{Binding Id}" Width="*"/>
-                <DataGridTextColumn Header="Address" Binding="{Binding Naziv}" Width="*"/>
-                <DataGridTextColumn Header="Value" Binding="{Binding Cena}" Width="*"/>
-                <DataGridTextColumn Header="Unit" Binding="{Binding Vrsta}" Width="*"/>
+                <DataGridTextColumn Header="Tag ID" Binding="{Binding TagId}" Width="*"/>
+                <DataGridTextColumn Header="Address" Binding="{Binding Adress}" Width="*"/>
+                <DataGridTextColumn Header="Value" Binding="{Binding Value}" Width="*"/>
+                <DataGridTextColumn Header="Unit" Binding="{Binding Unit}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
 
-        <Rectangle Grid.Row="1" Fill="#cfd8dc"/>
-        <Label Grid.Row="1" Content="Tag List" Margin="25, 0, 0, 0" HorizontalAlignment="Center"/>
         <materialDesign:Card
               materialDesign:ShadowAssist.ShadowDepth="Depth1"
               Padding="32"
               Content="DEPTH 1" 
               Grid.Row="1"/>
+        <Rectangle Grid.Row="1" Fill="#cfd8dc"/>
+        <Label Grid.Row="1" Content="Tag List" Margin="25, 0, 0, 0" HorizontalAlignment="Center"/>
+
 
 
 
