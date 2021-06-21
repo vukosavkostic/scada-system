@@ -25,7 +25,18 @@ namespace ScadaGUI
             InitializeComponent();
         }
 
-        private void UpdateProduct(object sender, RoutedEventArgs e)
+
+        private void AddTag(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DarkMode_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ExitMainWindow(object sender, RoutedEventArgs e)
         {
 
         }
