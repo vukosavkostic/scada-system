@@ -15,9 +15,10 @@
         FontFamily="{DynamicResource MaterialDesignFont}"
         Title="SCADA" Height="600" Width="800" MinHeight="600" MinWidth="800">
 
+
     <Grid Margin="10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="65"/>
+            <RowDefinition Height="90"/>
             <RowDefinition Height="25"/>
             <RowDefinition Height="3*"/>
             <RowDefinition Height="*"/>
@@ -26,58 +27,95 @@
         <StackPanel Orientation="Horizontal" Grid.Row="0">
             <StackPanel HorizontalAlignment="Left" Background="White" Margin="0, 0, 0, 5">
                 <Button
-                    Style="{StaticResource MaterialDesignFlatLightBgButton}"
-                    ToolTip="MaterialDesignFlatLightButton"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
-                    Margin="0,8,0,0"
-                    Width="45"
-                    Height="30"
-                    Click="AddTag">
+                        Style="{StaticResource MaterialDesignFlatLightBgButton}"
+                        ToolTip="MaterialDesignFlatLightButton"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Top"
+                        Margin="0,8,0,0"
+                        Width="45"
+                        Height="30"
+                        Click="AddTag">
                     <materialDesign:PackIcon Kind="Plus" HorizontalAlignment="Center" VerticalAlignment="Center" Width="20" Height="20"/>
                 </Button>
                 <Label Content="Add Tag" 
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Bottom"
-                    FontWeight="Regular"/>
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Bottom"
+                        FontWeight="Regular"/>
+                <Grid>
+                    <Rectangle Fill="#cfd8dc"/>
+                    <Label Content="TAG" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" Foreground="White"/>
+                </Grid>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Background="White" Margin="5, 0, 0, 5">
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel>
+                        <Button
+                                Style="{StaticResource MaterialDesignFlatLightBgButton}"
+                                ToolTip="MaterialDesignFlatLightButton"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Top"
+                                Margin="0,8,0,0"
+                                Width="55"
+                                Height="30"
+                                Click="AddAlarm">
+                            <materialDesign:PackIcon Kind="AlarmLight" />
+                        </Button>
+                        <Label Content="Add Alarm" 
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Bottom"
+                                FontWeight="Regular"/>
+                    </StackPanel>
+
+                    <StackPanel>
+                        <Button
+                                Style="{StaticResource MaterialDesignFlatLightBgButton}"
+                                ToolTip="MaterialDesignFlatLightButton"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Top"
+                                Margin="0,8,0,0"
+                                Width="65"
+                                Height="30"
+                                Click="AlarmHistory">
+                            <materialDesign:PackIcon Kind="History" />
+                        </Button>
+                        <Label Content="Alarm History" 
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Bottom"
+                                FontWeight="Regular"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <Grid>
+                    <Rectangle Fill="#cfd8dc"/>
+                    <Label Content="ALARM" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" Foreground="White"/>
+                </Grid>
             </StackPanel>
 
-            <StackPanel HorizontalAlignment="Left" Background="White" Margin="5, 0, 0, 5">
-                <Button
-                    Style="{StaticResource MaterialDesignFlatLightBgButton}"
-                    ToolTip="MaterialDesignFlatLightButton"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
-                    Margin="0,8,0,0"
-                    Width="55"
-                    Height="30"
-                    Click="AddAlarm">
-                    <materialDesign:PackIcon Kind="AlarmLight" />
-                </Button>
-                <Label Content="Add Alarm" 
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Bottom"
-                    FontWeight="Regular"/>
-            </StackPanel>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Background="White" Margin="5, 0, 0, 5" Width="70">
+                <StackPanel>
+                    <Button
+                            Style="{StaticResource MaterialDesignFlatLightBgButton}"
+                            ToolTip="MaterialDesignFlatLightButton"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Top"
+                            Margin="0,8,0,0"
+                            Width="45"
+                            Height="30"
+                            Click="ExitMainWindow">
+                        <materialDesign:PackIcon Kind="Close" HorizontalAlignment="Center" VerticalAlignment="Center" Height="20" Width="20"/>
+                    </Button>
+                    <Label 
+                            Content="Exit" 
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Bottom"
+                            FontWeight="Regular"/>
+                </StackPanel>
+                <Grid>
+                    <Rectangle Fill="#cfd8dc"/>
+                    <Label Content="WINDOW" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" Foreground="White"/>
+                </Grid>
 
-            <StackPanel HorizontalAlignment="Left" Background="White" Margin="5, 0, 0, 5">
-                <Button
-                    Style="{StaticResource MaterialDesignFlatLightBgButton}"
-                    ToolTip="MaterialDesignFlatLightButton"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
-                    Margin="0,8,0,0"
-                    Width="65"
-                    Height="30"
-                    Click="AlarmHistory">
-                    <materialDesign:PackIcon Kind="History" />
-                </Button>
-                <Label Content="Alarm History" 
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Bottom"
-                    FontWeight="Regular"/>
-            </StackPanel>
-
+<<<<<<< HEAD
             <StackPanel HorizontalAlignment="Left" Background="White" Margin="5, 0, 0, 5" Width="60">
                 <Button
                     Style="{StaticResource MaterialDesignFlatLightBgButton}"
@@ -95,34 +133,42 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Bottom"
                     FontWeight="Regular"/>
+=======
+>>>>>>> gui-experimenting
             </StackPanel>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Right">
-            <StackPanel Background="White" Margin="5, 0, 0, 5">
+
+        <StackPanel Orientation="Vertical" Grid.Row="0" HorizontalAlignment="Right" Background="White" Margin="5, 0, 0, 5">
+            <StackPanel>
                 <Button
-                    Style="{StaticResource MaterialDesignFlatLightBgButton}"
-                    ToolTip="MaterialDesignFlatLightButton"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
-                    Margin="0,8,0,0"
-                    Width="55"
-                    Height="30" Click="DarkMode_Clicked">
+                        Style="{StaticResource MaterialDesignFlatLightBgButton}"
+                        ToolTip="MaterialDesignFlatLightButton"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Top"
+                        Margin="0,8,0,0"
+                        Width="55"
+                        Height="30" Click="DarkMode_Clicked">
                     <materialDesign:PackIcon Kind="LightbulbOn"/>
                 </Button>
                 <Label 
-                    Content="Dark mode" 
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Bottom"
-                    FontWeight="Regular"
-                    />
+                        Content="Dark mode" 
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Bottom"
+                        FontWeight="Regular"/>
             </StackPanel>
+            <Grid>
+                <Rectangle Fill="#cfd8dc"/>
+                <Label Content="STYLE" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" Foreground="White"/>
+            </Grid>
+
+
         </StackPanel>
 
         <materialDesign:Card
-          materialDesign:ShadowAssist.ShadowDepth="Depth2"
-          Padding="32"
-          Grid.Row="2"/>
+              materialDesign:ShadowAssist.ShadowDepth="Depth2"
+              Padding="32"
+              Grid.Row="2"/>
         <DataGrid Grid.Row="2"  Name ="DataGrid"  SelectedItem="{Binding SelectedTag}" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Tag ID" Binding="{Binding TagId}" Width="*"/>
@@ -133,10 +179,10 @@
             </DataGrid.Columns>
         </DataGrid>
         <materialDesign:Card
-              materialDesign:ShadowAssist.ShadowDepth="Depth1"
-              Padding="32"
-              Content="DEPTH 1" 
-              Grid.Row="1"/>
+                  materialDesign:ShadowAssist.ShadowDepth="Depth1"
+                  Padding="32"
+                  Content="DEPTH 1" 
+                  Grid.Row="1"/>
         <Rectangle Grid.Row="1" Fill="#cfd8dc"/>
         <Label Grid.Row="1" Content="Tag List" Margin="25, 0, 0, 0" HorizontalAlignment="Center" FontWeight="DemiBold"/>
 
@@ -154,12 +200,5 @@
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
-
-
-
-
-
-
-
     </Grid>
 </Window>
