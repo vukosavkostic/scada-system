@@ -23,7 +23,7 @@
             <RowDefinition Height="5"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="0" >
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
             <StackPanel HorizontalAlignment="Left" Background="White" Margin="0, 0, 0, 5">
                 <Button
                     Style="{StaticResource MaterialDesignFlatLightBgButton}"
@@ -42,7 +42,7 @@
                     FontWeight="Regular"/>
             </StackPanel>
 
-            <StackPanel Grid.Row="0" HorizontalAlignment="Left" Background="White" Margin="5, 0, 0, 5" Width="60">
+            <StackPanel HorizontalAlignment="Left" Background="White" Margin="5, 0, 0, 5" Width="60">
                 <Button
                     Style="{StaticResource MaterialDesignFlatLightBgButton}"
                     ToolTip="MaterialDesignFlatLightButton"
@@ -60,24 +60,27 @@
                     VerticalAlignment="Bottom"
                     FontWeight="Regular"/>
             </StackPanel>
-            
-            <StackPanel Grid.Row="0" Background="White" Margin="5, 0, 0, 5">
-                <ToggleButton
-                      Style="{StaticResource MaterialDesignSwitchToggleButton}"
-                      HorizontalAlignment="Center"
-                      VerticalAlignment="Top"
-                      Margin="0,15,0,0"
-                      ToolTip="Default ToggleButton Style"
-                      Checked="DarkMode_Checked"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Right">
+            <StackPanel Background="White" Margin="5, 0, 0, 5">
+                <Button
+                    Style="{StaticResource MaterialDesignFlatLightBgButton}"
+                    ToolTip="MaterialDesignFlatLightButton"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Margin="0,8,0,0"
+                    Width="55"
+                    Height="30" Click="DarkMode_Clicked">
+                    <materialDesign:PackIcon Kind="LightbulbOn"/>
+                </Button>
                 <Label 
                     Content="Dark mode" 
                     HorizontalAlignment="Center"
                     VerticalAlignment="Bottom"
-                    Margin="0,5,0,0"
-                    FontWeight="Regular"/>
+                    FontWeight="Regular"
+                    />
             </StackPanel>
-
-
         </StackPanel>
         
         
@@ -91,9 +94,14 @@
                 <DataGridTextColumn Header="Unit" Binding="{Binding Vrsta}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-        
-        <Rectangle Grid.Row="1" Fill="#cfd8dc" />
+
+        <Rectangle Grid.Row="1" Fill="#cfd8dc"/>
         <Label Grid.Row="1" Content="Tag List" Margin="25, 0, 0, 0" HorizontalAlignment="Center"/>
+        <materialDesign:Card
+              materialDesign:ShadowAssist.ShadowDepth="Depth1"
+              Padding="32"
+              Content="DEPTH 1" 
+              Grid.Row="1"/>
 
 
 
