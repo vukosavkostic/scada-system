@@ -19,8 +19,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="65"/>
             <RowDefinition Height="25"/>
+            <RowDefinition Height="3*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="5"/>
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" Grid.Row="0">
@@ -125,7 +125,6 @@
           materialDesign:ShadowAssist.ShadowDepth="Depth2"
           Padding="32"
           Grid.Row="2"/>
-
         <DataGrid Grid.Row="2"  Name ="DataGrid"  SelectedItem="{Binding SelectedTag}" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Tag ID" Binding="{Binding TagId}" Width="*"/>
@@ -135,7 +134,6 @@
                 <DataGridTextColumn Header="Unit" Binding="{Binding Unit}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-
         <materialDesign:Card
               materialDesign:ShadowAssist.ShadowDepth="Depth1"
               Padding="32"
@@ -143,6 +141,21 @@
               Grid.Row="1"/>
         <Rectangle Grid.Row="1" Fill="#cfd8dc"/>
         <Label Grid.Row="1" Content="Tag List" Margin="25, 0, 0, 0" HorizontalAlignment="Center" FontWeight="DemiBold"/>
+
+        <StackPanel Orientation="Vertical" Grid.Row="3" Margin="0,5,0,0">
+            <Grid Height="20">
+                <Rectangle Fill="#f5f5f5"/>
+                <Label Content="Alarm List" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="ExtraLight"/>
+            </Grid>
+            <DataGrid Name ="AlarmGrid" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Alarm Name" Binding="{Binding AlarmName}" Width="*"/>
+                    <DataGridTextColumn Header="Limit Value" Binding="{Binding LimitValue}" Width="*"/>
+                    <DataGridTextColumn Header="Alarm Message" Binding="{Binding AlarmMessage}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+
 
 
 
