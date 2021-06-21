@@ -78,8 +78,6 @@
                     FontWeight="Regular"/>
             </StackPanel>
 
-
-
             <StackPanel HorizontalAlignment="Left" Background="White" Margin="5, 0, 0, 5" Width="60">
                 <Button
                     Style="{StaticResource MaterialDesignFlatLightBgButton}"
@@ -143,7 +141,7 @@
         <Label Grid.Row="1" Content="Tag List" Margin="25, 0, 0, 0" HorizontalAlignment="Center" FontWeight="DemiBold"/>
 
         <StackPanel Orientation="Vertical" Grid.Row="3" Margin="0,5,0,0">
-            <Grid Height="20">
+            <Grid Height="25">
                 <Rectangle Fill="#f5f5f5"/>
                 <Label Content="Alarm List" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="ExtraLight"/>
             </Grid>
@@ -152,6 +150,7 @@
                     <DataGridTextColumn Header="Alarm Name" Binding="{Binding AlarmName}" Width="*"/>
                     <DataGridTextColumn Header="Limit Value" Binding="{Binding LimitValue}" Width="*"/>
                     <DataGridTextColumn Header="Alarm Message" Binding="{Binding AlarmMessage}" Width="*"/>
+                    <DataGridTextColumn Header="Time Stamp" Binding="{Binding TimeStamp}" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>

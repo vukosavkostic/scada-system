@@ -31,12 +31,23 @@ namespace ScadaGUI
 
         }
 
-        private void DarkMode_Checked(object sender, RoutedEventArgs e)
+
+        private void ExitMainWindow(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void ExitMainWindow(object sender, RoutedEventArgs e)
+        private void DarkMode_Clicked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AddAlarm(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AlarmHistory(object sender, RoutedEventArgs e)
         {
 
         }
