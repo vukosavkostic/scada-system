@@ -92,8 +92,8 @@
         </StackPanel>
 
 
-        <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Right" Background="White" Margin="5, 0, 0, 5">
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Background="White" Margin="5, 0, 0, 5" Width="70">
+        <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Right" Margin="5, 0, 0, 5">
+            <StackPanel Orientation="Vertical" Background="White" Width="70">
                 <StackPanel>
                     <Button
                             Style="{StaticResource MaterialDesignFlatLightBgButton}"
@@ -118,28 +118,29 @@
                 </Grid>
             </StackPanel>
 
-            <StackPanel>
-                <Button
-                        Style="{StaticResource MaterialDesignFlatLightBgButton}"
-                        ToolTip="MaterialDesignFlatLightButton"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Top"
-                        Margin="0,8,0,0"
-                        Width="55"
-                        Height="30" Click="DarkMode_Clicked">
-                    <materialDesign:PackIcon Kind="LightbulbOn"/>
-                </Button>
-                <Label 
-                        Content="Dark mode" 
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Bottom"
-                        FontWeight="Regular"/>
+            <StackPanel Background="White" Margin="5,0,0,0">
+                <StackPanel Orientation="Vertical">
+                    <Button
+                            Style="{StaticResource MaterialDesignFlatLightBgButton}"
+                            ToolTip="MaterialDesignFlatLightButton"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Top"
+                            Margin="0,8,0,0"
+                            Width="55"
+                            Height="30" Click="DarkMode_Clicked">
+                        <materialDesign:PackIcon Kind="LightbulbOn"/>
+                    </Button>
+                    <Label 
+                            Content="Dark mode" 
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Bottom"
+                            FontWeight="Regular"/>
+                </StackPanel>
+                <Grid>
+                    <Rectangle Fill="#cfd8dc"/>
+                    <Label Content="STYLE" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" Foreground="White"/>
+                </Grid>
             </StackPanel>
-            <Grid>
-                <Rectangle Fill="#cfd8dc"/>
-                <Label Content="STYLE" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" Foreground="White"/>
-            </Grid>
-
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Row="1">
