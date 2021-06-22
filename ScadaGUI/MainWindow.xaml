@@ -89,7 +89,10 @@
                     <Label Content="ALARM" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" Foreground="White"/>
                 </Grid>
             </StackPanel>
+        </StackPanel>
 
+
+        <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Right" Background="White" Margin="5, 0, 0, 5">
             <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Background="White" Margin="5, 0, 0, 5" Width="70">
                 <StackPanel>
                     <Button
@@ -113,12 +116,8 @@
                     <Rectangle Fill="#cfd8dc"/>
                     <Label Content="WINDOW" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" Foreground="White"/>
                 </Grid>
-
             </StackPanel>
-        </StackPanel>
 
-
-        <StackPanel Orientation="Vertical" Grid.Row="0" HorizontalAlignment="Right" Background="White" Margin="5, 0, 0, 5">
             <StackPanel>
                 <Button
                         Style="{StaticResource MaterialDesignFlatLightBgButton}"
@@ -140,9 +139,8 @@
                 <Rectangle Fill="#cfd8dc"/>
                 <Label Content="STYLE" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" Foreground="White"/>
             </Grid>
-            
-        </StackPanel>
 
+        </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Row="1">
             <Grid>
