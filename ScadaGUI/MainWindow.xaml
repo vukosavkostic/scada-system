@@ -115,9 +115,8 @@
                     <Label Content="WINDOW" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" Foreground="White"/>
                 </Grid>
 
-<<<<<<< HEAD
-            <StackPanel HorizontalAlignment="Left" Background="White" Margin="5, 0, 0, 5" Width="60">
-                <Button
+                <StackPanel HorizontalAlignment="Left" Background="White" Margin="5, 0, 0, 5" Width="60">
+                    <Button
                     Style="{StaticResource MaterialDesignFlatLightBgButton}"
                     ToolTip="MaterialDesignFlatLightButton"
                     HorizontalAlignment="Center"
@@ -126,15 +125,15 @@
                     Width="45"
                     Height="30"
                     Click="ExitMainWindow">
-                    <materialDesign:PackIcon Kind="Close" HorizontalAlignment="Center" VerticalAlignment="Center" Height="20" Width="20"/>
-                </Button>
-                <Label 
+                        <materialDesign:PackIcon Kind="Close" HorizontalAlignment="Center" VerticalAlignment="Center" Height="20" Width="20"/>
+                    </Button>
+                    <Label 
                     Content="Exit" 
                     HorizontalAlignment="Center"
                     VerticalAlignment="Bottom"
                     FontWeight="Regular"/>
-=======
->>>>>>> gui-experimenting
+
+                </StackPanel>
             </StackPanel>
         </StackPanel>
 
@@ -200,5 +199,6 @@
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
+            
     </Grid>
 </Window>
