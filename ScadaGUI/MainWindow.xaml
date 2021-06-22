@@ -142,37 +142,44 @@
             </Grid>
             
         </StackPanel>
-        
 
 
-        <Grid Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="25"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
 
-            <materialDesign:Card
-              materialDesign:ShadowAssist.ShadowDepth="Depth2"
-              Padding="32"
-              Grid.Row="1"/>
-            <DataGrid Grid.Row="1"  Name ="DataGrid"  SelectedItem="{Binding SelectedTag}" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Tag ID" Binding="{Binding TagId}" Width="*"/>
-                    <DataGridTextColumn Header="Tag Type" Binding="{Binding TagType}" Width="*"/>
-                    <DataGridTextColumn Header="Address" Binding="{Binding Adress}" Width="*"/>
-                    <DataGridTextColumn Header="Value" Binding="{Binding Value}" Width="*"/>
-                    <DataGridTextColumn Header="Unit" Binding="{Binding Unit}" Width="*"/>
-                </DataGrid.Columns>
-            </DataGrid>
-
-            <materialDesign:Card
-                  materialDesign:ShadowAssist.ShadowDepth="Depth1"
+                <materialDesign:Card
+                  materialDesign:ShadowAssist.ShadowDepth="Depth2"
                   Padding="32"
-                  Grid.Row="0"/>
-            <Rectangle Grid.Row="0" Fill="#cfd8dc"/>
-            <Label Grid.Row="0" Content="Tag List" Margin="25, 0, 0, 0" HorizontalAlignment="Center" FontWeight="DemiBold"/>
+                  Grid.Row="1"/>
+                <DataGrid Grid.Row="1"  Name ="DataGrid"  SelectedItem="{Binding SelectedTag}" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Tag ID" Binding="{Binding TagId}" Width="*"/>
+                        <DataGridTextColumn Header="Tag Type" Binding="{Binding TagType}" Width="*"/>
+                        <DataGridTextColumn Header="Address" Binding="{Binding Adress}" Width="*"/>
+                        <DataGridTextColumn Header="Value" Binding="{Binding Value}" Width="*"/>
+                        <DataGridTextColumn Header="Unit" Binding="{Binding Unit}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
 
-        </Grid>
+                <materialDesign:Card
+                      materialDesign:ShadowAssist.ShadowDepth="Depth1"
+                      Padding="32"
+                      Grid.Row="0"/>
+                <Rectangle Grid.Row="0" Fill="#cfd8dc"/>
+                <Label Grid.Row="0" Content="Tag List" Margin="25, 0, 0, 0" HorizontalAlignment="Center" FontWeight="DemiBold"/>
+            </Grid>
+
+            <Grid Visibility="Collapsed">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+            </Grid>
+        </StackPanel>
 
 
 
