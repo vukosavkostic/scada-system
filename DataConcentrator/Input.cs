@@ -12,8 +12,7 @@ namespace DataConcentrator
 
         #region Fields
         private string ioAddress;
-        private double scanTime;
-        private double InputValue;
+        private int scanTime;
         #endregion
 
         #region Properties
@@ -31,7 +30,7 @@ namespace DataConcentrator
             }
         }
 
-        public double ScanTime
+        public int ScanTime
         {
             get
             {

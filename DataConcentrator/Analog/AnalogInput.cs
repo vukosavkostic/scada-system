@@ -86,17 +86,60 @@ namespace DataConcentrator.Analog
             AThread.Start(PLCContext.Instance);
         }
 
+        public void StopAIThread()
+        {
+            AThread.Abort();
+        }
         public void ScanPLCAnalogInput(object obj)
         {
             while(true)
             {
-                lock(locker)
+                lock (locker)
                 {
-                    double currentAIValue = ((PLCSimulatorManager)obj).GetAnalogValue(IOAddress);
+                    Value = ((PLCSimulatorManager)obj).GetAnalogValue(IOAddress);
 
+                    foreach (Alarm al in Alarms)
+                    {
+                        if (al.AlarmType == ALARM_TYPE.LowValueAlarm)
+                        {
+                            if (Value <= al.LimitValue)
+                            {
+                                al.AlarmOn = true;
+                                Status = AnalogInputStatus.ALARMING;
+                                ValueChangedToCritical?.Invoke(al.Id);
+                            }
+
+                            else
+                            {
+                                al.AlarmOn = false;
+                                Status = AnalogInputStatus.REGULAR;
+                            }
+
+                        }
+
+                        if (al.AlarmType == ALARM_TYPE.HighValueAlarm)
+                        {
+                            if (Value >= al.LimitValue)
+                            {
+                                al.AlarmOn = true;
+                                Status = AnalogInputStatus.ALARMING;
+                                ValueChangedToCritical?.Invoke(al.Id);
+                            }
+
+                            else
+                            {
+                                al.AlarmOn = false;
+                                Status = AnalogInputStatus.REGULAR;
+                            }
+
+                        }
+
+                    }
 
 
                 }
+
+                Thread.Sleep(ScanTime);
 
             }
         }

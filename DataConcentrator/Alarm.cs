@@ -21,6 +21,7 @@ namespace DataConcentrator
         private string alarmMessage;
         private DateTime timeStamp;
         private ALARM_TYPE alarmType;
+        private bool alarmOn;
 
         public event PropertyChangedEventHandler PropertyChanged;
         #endregion
@@ -97,6 +98,21 @@ namespace DataConcentrator
             }
 
         }
+        public bool AlarmOn
+        {
+            get
+            {
+                return alarmOn;
+            }
+
+            set
+            {
+                alarmOn = value;
+                OnPropertyChanged("AlarmOn");
+            }
+
+        }
+
         #endregion
 
 
