@@ -4,42 +4,44 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataConcentrator
+namespace DataConcentrator.Analog
 {
-    public class Tag 
+    public class AnalogInput : Input 
     {
         #region Fields
-        private string id;
-        private string description;
+        private List<Alarm> alarms;
+        private string unit;
         #endregion
 
         #region Properties
-        public string Id
+        public List<Alarm> Alarms
         {
             get
             {
-                return id;
+                return alarms;
             }
 
             set
             {
-                id = value;
+                alarms = value;
+                OnPropertyChanged("Alarms");
             }
         }
 
-        public string Description
+        public string Unit
         {
             get
             {
-                return description;
+                return unit;
             }
 
             set
             {
-                description = value;
+                unit = value;
+                OnPropertyChanged("Unit");
             }
-
         }
         #endregion
+
     }
 }
