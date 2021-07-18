@@ -43,5 +43,7 @@ namespace DataConcentrator.Analog
         }
         #endregion
 
+
+
     }
 }

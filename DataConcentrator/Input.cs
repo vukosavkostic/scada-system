@@ -61,11 +61,7 @@ namespace DataConcentrator
         #endregion
 
 
-        #region Methods
-        protected void OnPropertyChanged(string property)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
-        }
+
 
 
     }

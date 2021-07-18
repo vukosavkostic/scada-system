@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DataConcentrator
 {
-    public class Tag 
+    public class Tag : INotifyPropertyChanged
     {
         #region Fields
         private string id;
         private string description;
+
+        public event PropertyChangedEventHandler PropertyChanged;
         #endregion
 
         #region Properties
@@ -24,6 +27,7 @@ namespace DataConcentrator
             set
             {
                 id = value;
+                OnPropertyChanged("Id");
             }
         }
 
@@ -37,9 +41,19 @@ namespace DataConcentrator
             set
             {
                 description = value;
+                OnPropertyChanged("Description");
             }
 
         }
         #endregion
+
+        #region Methods
+        protected void OnPropertyChanged(string property)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
+        }
+        #endregion
     }
+
+
 }

@@ -29,6 +29,7 @@ namespace DataConcentrator
             set
             {
                 ioAddress = value;
+                OnPropertyChanged("IOAddress");
             }
         }
 
@@ -42,6 +43,7 @@ namespace DataConcentrator
             set
             {
                 initialValue = value;
+                OnPropertyChanged("InitialValue");
             }
         }
         #endregion
