@@ -23,6 +23,7 @@ namespace DataConcentrator.Analog
         private List<Alarm> alarms;
         private Thread AThread;
         private string unit;
+        private double value;
         private AnalogInputStatus status;
         // Event triggers when a value is above or below critical level
         public ValueHandler ValueChangedToCritical;
@@ -70,6 +71,21 @@ namespace DataConcentrator.Analog
                 status = value;
                 OnPropertyChanged("Status");
             }
+        }
+
+        public double Value
+        {
+            get
+            {
+                return value;
+            }
+
+            set
+            {
+                this.value = value;
+                OnPropertyChanged("Value");
+            }
+
         }
         #endregion
 

@@ -13,8 +13,25 @@ namespace DataConcentrator.Digital
 
         #region Fields
         private Thread DThread;
+        private bool value;
         private object locker = new object();
         #endregion
+
+        public bool Value
+        {
+            get
+            {
+                return value;
+            }
+
+            set
+            {
+                this.value = value;
+                OnPropertyChanged("Value");
+            }
+
+        }
+
 
         #region Methods
         public void StartDThread()
@@ -31,7 +48,12 @@ namespace DataConcentrator.Digital
         {
             while(true)
             {
+                lock (locker) 
+                {
+                    Value = ((PLCSimulatorManager)obj).GetDigitalValue(IOAddress);
+                }
 
+                Thread.Sleep(ScanTime);
             }
 
         }
