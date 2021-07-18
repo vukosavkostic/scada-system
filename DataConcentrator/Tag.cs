@@ -12,6 +12,7 @@ namespace DataConcentrator
         #region Fields
         private string id;
         private string description;
+        private double value;
 
         public event PropertyChangedEventHandler PropertyChanged;
         #endregion
@@ -42,6 +43,21 @@ namespace DataConcentrator
             {
                 description = value;
                 OnPropertyChanged("Description");
+            }
+
+        }
+
+        public double Value
+        {
+            get
+            {
+                return value;
+            }
+
+            set
+            {
+                this.value = value;
+                OnPropertyChanged("Value");
             }
 
         }

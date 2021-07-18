@@ -7,31 +7,17 @@ using System.Threading.Tasks;
 
 namespace DataConcentrator
 {
-    public class Input : Tag , INotifyPropertyChanged
+    public class Input : Tag
     {
-        public enum IO_ADDRESS
-        {
-            ADDR001,
-            ADDR002,
-            ADDR003,
-            ADDR004,
-            ADDR005,
-            ADDR006,
-            ADDR007,
-            ADDR008,
-            ADDR009,
-            ADDR0010
-        }
 
         #region Fields
-        private IO_ADDRESS ioAddress;
+        private string ioAddress;
         private double scanTime;
-
-        public event PropertyChangedEventHandler PropertyChanged;
+        private double InputValue;
         #endregion
 
         #region Properties
-        public IO_ADDRESS IOAddress
+        public string IOAddress
         {
             get
             {

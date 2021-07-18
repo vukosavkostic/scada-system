@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PLCSimulator;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,7 +26,6 @@ namespace DataConcentrator.Analog
         private AnalogInputStatus status;
         // Event triggers when a value is above or below critical level
         public ValueHandler ValueChangedToCritical;
-
         private object locker = new object();
         #endregion
 
@@ -81,12 +81,22 @@ namespace DataConcentrator.Analog
             this.Status = AnalogInputStatus.REGULAR;
         }
 
+        public void StartAIThread()
+        {
+            AThread.Start(PLCContext.Instance);
+        }
 
         public void ScanPLCAnalogInput(object obj)
         {
             while(true)
             {
+                lock(locker)
+                {
+                    double currentAIValue = ((PLCSimulatorManager)obj).GetAnalogValue(IOAddress);
 
+
+
+                }
 
             }
         }
