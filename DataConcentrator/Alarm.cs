@@ -7,13 +7,25 @@ using System.Threading.Tasks;
 
 namespace DataConcentrator
 {
-    public class Alarm
+    public enum ALARM_TYPE
     {
+        HighValueAlarm,
+        LowValueAlarm
+    }
+
+    public class Alarm : INotifyPropertyChanged
+    {
+        #region Fields
         private double limitValue;
         private string id;
         private string alarmMessage;
         private DateTime timeStamp;
+        private ALARM_TYPE alarmType;
 
+        public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
+
+        #region Properties
         public double LimitValue
         {
             get
@@ -24,6 +36,7 @@ namespace DataConcentrator
             set
             {
                 limitValue = value;
+                OnPropertyChanged("LimitValue");
             }
         }
 
@@ -37,6 +50,7 @@ namespace DataConcentrator
             set
             {
                 id = value;
+                OnPropertyChanged("Id");
             }
         }
 
@@ -50,6 +64,7 @@ namespace DataConcentrator
             set
             {
                 alarmMessage = value;
+                OnPropertyChanged("AlarmMessage");
             }
         }
 
@@ -63,7 +78,34 @@ namespace DataConcentrator
             set
             {
                 timeStamp = value;
+                OnPropertyChanged("TimeStamp");
+
             }
         }
+
+        public ALARM_TYPE AlarmType
+        {
+            get
+            {
+                return alarmType;
+            }
+
+            set
+            {
+                alarmType = value;
+                OnPropertyChanged("AlarmType");
+            }
+
+        }
+        #endregion
+
+
+
+        #region Methods
+        protected void OnPropertyChanged(string property)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
+        }
+        #endregion
     }
 }
