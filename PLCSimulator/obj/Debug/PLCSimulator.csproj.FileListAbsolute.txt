@@ -1,0 +1,6 @@
+C:\Users\Vuko\Desktop\SCADA_System\ScadaSystem\PLCSimulator\bin\Debug\PLCSimulator.dll
+C:\Users\Vuko\Desktop\SCADA_System\ScadaSystem\PLCSimulator\bin\Debug\PLCSimulator.pdb
+C:\Users\Vuko\Desktop\SCADA_System\ScadaSystem\PLCSimulator\obj\Debug\PLCSimulator.csprojAssemblyReference.cache
+C:\Users\Vuko\Desktop\SCADA_System\ScadaSystem\PLCSimulator\obj\Debug\PLCSimulator.csproj.CoreCompileInputs.cache
+C:\Users\Vuko\Desktop\SCADA_System\ScadaSystem\PLCSimulator\obj\Debug\PLCSimulator.dll
+C:\Users\Vuko\Desktop\SCADA_System\ScadaSystem\PLCSimulator\obj\Debug\PLCSimulator.pdb

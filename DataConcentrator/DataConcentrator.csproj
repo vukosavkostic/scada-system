@@ -43,13 +43,25 @@
   <ItemGroup>
     <Compile Include="Alarm.cs" />
     <Compile Include="Analog\AnalogInput.cs" />
+    <Compile Include="Analog\AnalogOutput.cs" />
     <Compile Include="Input.cs" />
     <Compile Include="Output.cs" />
+    <Compile Include="PLCContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tag.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Digital\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PLCSimulator\PLCSimulator.csproj">
+      <Project>{d329470c-25d1-4408-866a-26f7f10ecbff}</Project>
+      <Name>PLCSimulator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ScadaGUI\ScadaGUI.csproj">
+      <Project>{d1c04f43-18df-4ed7-95a3-f1d42e03574d}</Project>
+      <Name>ScadaGUI</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
