@@ -1,10 +1,7 @@
 C:\Users\Vuko\Desktop\SCADA_System\ScadaSystem\DataConcentrator\bin\Debug\DataConcentrator.dll
 C:\Users\Vuko\Desktop\SCADA_System\ScadaSystem\DataConcentrator\bin\Debug\DataConcentrator.pdb
 C:\Users\Vuko\Desktop\SCADA_System\ScadaSystem\DataConcentrator\bin\Debug\PLCSimulator.dll
-C:\Users\Vuko\Desktop\SCADA_System\ScadaSystem\DataConcentrator\bin\Debug\ScadaGUI.exe
 C:\Users\Vuko\Desktop\SCADA_System\ScadaSystem\DataConcentrator\bin\Debug\PLCSimulator.pdb
-C:\Users\Vuko\Desktop\SCADA_System\ScadaSystem\DataConcentrator\bin\Debug\ScadaGUI.pdb
-C:\Users\Vuko\Desktop\SCADA_System\ScadaSystem\DataConcentrator\bin\Debug\ScadaGUI.exe.config
 C:\Users\Vuko\Desktop\SCADA_System\ScadaSystem\DataConcentrator\obj\Debug\DataConcentrator.csprojAssemblyReference.cache
 C:\Users\Vuko\Desktop\SCADA_System\ScadaSystem\DataConcentrator\obj\Debug\DataConcentrator.csproj.CoreCompileInputs.cache
 C:\Users\Vuko\Desktop\SCADA_System\ScadaSystem\DataConcentrator\obj\Debug\DataConcentrator.csproj.CopyComplete
