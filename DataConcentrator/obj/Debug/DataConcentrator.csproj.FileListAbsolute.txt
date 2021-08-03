@@ -10,3 +10,8 @@ C:\Users\Vuko\Desktop\SCADA_System\ScadaSystem\DataConcentrator\obj\Debug\DataCo
 C:\Users\Vuko\Desktop\SCADA_System\ScadaSystem\DataConcentrator\obj\Debug\DataConcentrator.csproj.CopyComplete
 C:\Users\Vuko\Desktop\SCADA_System\ScadaSystem\DataConcentrator\obj\Debug\DataConcentrator.dll
 C:\Users\Vuko\Desktop\SCADA_System\ScadaSystem\DataConcentrator\obj\Debug\DataConcentrator.pdb
+C:\Users\Vuko\Desktop\SCADA_System\ScadaSystem\DataConcentrator\bin\Debug\DataConcentrator.dll.config
+C:\Users\Vuko\Desktop\SCADA_System\ScadaSystem\DataConcentrator\bin\Debug\EntityFramework.dll
+C:\Users\Vuko\Desktop\SCADA_System\ScadaSystem\DataConcentrator\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Vuko\Desktop\SCADA_System\ScadaSystem\DataConcentrator\bin\Debug\EntityFramework.xml
+C:\Users\Vuko\Desktop\SCADA_System\ScadaSystem\DataConcentrator\bin\Debug\EntityFramework.SqlServer.xml

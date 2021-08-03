@@ -31,7 +31,8 @@ namespace DataConcentrator.Analog
         #endregion
 
         #region Properties
-        public List<Alarm> Alarms
+
+        public virtual List<Alarm> Alarms
         {
             get
             {

@@ -1,6 +1,9 @@
-﻿using System;
+﻿using DataConcentrator.Analog;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +26,10 @@ namespace DataConcentrator
         private ALARM_TYPE alarmType;
         private bool alarmOn;
 
+        [ForeignKey("AnalogInput")]
+        public string AnalogInputTagName { get; set; }
+        public virtual AnalogInput AnalogInput { get; set; }
+
         public event PropertyChangedEventHandler PropertyChanged;
         #endregion
 
@@ -41,6 +48,7 @@ namespace DataConcentrator
             }
         }
 
+        [Key]
         public string Id
         {
             get
