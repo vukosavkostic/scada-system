@@ -14,11 +14,11 @@
         Background="LightGray"
         FontFamily="{DynamicResource MaterialDesignFont}"
         
-        Title="AddTag" Height="350" Width="600" MinHeight="350" MinWidth="600" MaxHeight="350" MaxWidth="600">
-    <Grid Margin="10">
+        Title="AddTag" Height="350" Width="600" MinHeight="400" MinWidth="600" MaxHeight="400" MaxWidth="600">
+        <Grid Margin="10">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="59*"/>
-            <ColumnDefinition Width="227*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="8*"/>
@@ -42,30 +42,36 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <Label Grid.Row="0" Grid.Column="0" Content="Analog input name:" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="12" Margin="5"/>
-            <Label Grid.Row="0" Grid.Column="1" Content="Required Field!" VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="anNameReqField" Foreground="Red" FontSize="12" Margin="0,0,0,10" Visibility="Hidden"/>
+
+            <Label Grid.Row="0" Grid.Column="0" Content="Tag Type:" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="12" Margin="15"/>
+            <Label Grid.Row="0" Grid.Column="1" Content="Required Field!" VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="tagTypeLab" Foreground="Red" FontSize="12" Margin="0,0,0,10" Visibility="Hidden"/>
+
+            <Label Grid.Row="1" Grid.Column="0" Content="Tag Name:" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="12" Margin="15"/>
+            <Label Grid.Row="1" Grid.Column="1" Content="Required Field!" VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="tagNameLab" Foreground="Red" FontSize="12" Margin="0,0,0,10" Visibility="Hidden"/>
 
 
-            <Label Grid.Row="1" Grid.Column="0" Content="I/O address:" FontWeight="SemiBold"  VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="12" Margin="5"/>
-            <Label Grid.Row="1" Grid.Column="1" Content="Required Field!" VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="addressReqField" Foreground="Red" FontSize="12" Margin="0,0,200,15" Visibility="Hidden"/>
+            <Label Grid.Row="2" Grid.Column="0" Content="Address:" FontWeight="SemiBold"  VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="12" Margin="15"/>
+            <Label Grid.Row="2" Grid.Column="1" Content="Required Field!" VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="tagAdressLab" Foreground="Red" FontSize="12" Margin="0,0,200,15" Visibility="Hidden"/>
 
-            <Label Grid.Row="2" Grid.Column="0" Content="Scan time:" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="12" Margin="5"/>
-            <Label Grid.Row="2" Grid.Column="1" Content="Required Field!" VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="scanTimeReqField" Foreground="Red" FontSize="12" Margin="0,0,200,15" Visibility="Hidden"/>
+            <Label Grid.Row="3" Grid.Column="0" Content="Scan Time:" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="12" Margin="15"/>
+            <Label Grid.Row="3" Grid.Column="1" Content="Required Field!" VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="tagScanTimeLab" Foreground="Red" FontSize="12" Margin="0,0,200,15" Visibility="Hidden"/>
 
-            <Label Grid.Row="3" Grid.Column="0" Content="Unit:" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="12" Margin="5"/>
-            <Label Grid.Row="3" Grid.Column="1" Content="Required Field!" VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="unitReqField" Foreground="Red" FontSize="12" Margin="0,0,200,15" Visibility="Hidden"/>
+            <Label Grid.Row="4" Grid.Column="0" Content="Unit:" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="12" Margin="15"/>
+            <Label Grid.Row="4" Grid.Column="1" Content="Required Field!" VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="tagUnitLab" Foreground="Red" FontSize="12" Margin="0,0,200,15" Visibility="Hidden"/>
 
-            <Label Grid.Row="4" Grid.Column="0" Content="Description:" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="12" Margin="5"/>
-            <Label Grid.Row="4" Grid.Column="1" Content="Required Field!" VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="desReqField" Foreground="Red" FontSize="12" Margin="0,0,150,10" Visibility="Hidden"/>
+            <Label Grid.Row="5" Grid.Column="0" Content="Description:" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="12" Margin="15"/>
+            <Label Grid.Row="5" Grid.Column="1" Content="Required Field!" VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="tagDescLab" Foreground="Red" FontSize="12" Margin="0,0,150,10" Visibility="Hidden"/>
 
-            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=Id}" Name="aiName" HorizontalAlignment="Left" Margin="10" FontSize="12" Width="350"/>
-            <ComboBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=IOAddress}" Name="aiAddress" FontSize="12"  Margin="10" HorizontalAlignment="Left" Width="200"/>
-            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=ScanTime}" Name="aiScanTime" HorizontalAlignment="Left" Margin="10" FontSize="12" Width="200"/>
-            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Path=Unit}" Name="aiUnit" HorizontalAlignment="Left" Margin="10" FontSize="12" Width="200"/>
+            <ComboBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=TagType}" Name="tagType" FontSize="12"  Margin="10" HorizontalAlignment="Left" Width="200"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=Id}" Name="tagName" HorizontalAlignment="Left" Margin="10" FontSize="12" Width="350"/>
+            <ComboBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=IOAddress}" Name="tagAddress" FontSize="12"  Margin="10" HorizontalAlignment="Left" Width="200"/>
+            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Path=ScanTime}" Name="tagScanTime" HorizontalAlignment="Left" Margin="10" FontSize="12" Width="200"/>
+            <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Path=Unit}" Name="tagUnit" HorizontalAlignment="Left" Margin="10" FontSize="12" Width="200"/>
             <TextBox
-              Grid.Row="4"
+              Grid.Row="5"
               Grid.Column="1"
               Text=""
               Name="aiDesc"

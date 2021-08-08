@@ -1,0 +1,85 @@
+﻿<Window x:Class="ScadaGUI.AddAlarmWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ScadaGUI"
+        mc:Ignorable="d"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="LightGray"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        
+        Title="AddTag" Height="350" Width="600" MinHeight="350" MinWidth="600" MaxHeight="350" MaxWidth="600">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="59*"/>
+            <ColumnDefinition Width="227*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="8*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+
+        <materialDesign:Card
+              materialDesign:ShadowAssist.ShadowDepth="Depth1"
+              Padding="32"
+              Grid.Row="0" Grid.ColumnSpan="2" Margin="0,0,0,33.2" Grid.RowSpan="2"/>
+        <Grid Grid.Row="0" Background="#efeff1" Grid.ColumnSpan="2" Margin="0,0,0,33.2" Grid.RowSpan="2" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Content="Alarm Name:" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="12" Margin="5"/>
+            <Label Grid.Row="0" Grid.Column="1" Content="Required Field!" VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="anNameReqField" Foreground="Red" FontSize="12" Margin="0,0,0,10" Visibility="Hidden"/>
+
+            <Label Grid.Row="1" Grid.Column="0" Content="Limit Value:" FontWeight="SemiBold"  VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="12" Margin="5"/>
+            <Label Grid.Row="1" Grid.Column="1" Content="Required Field!" VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="addressReqField" Foreground="Red" FontSize="12" Margin="0,0,200,15" Visibility="Hidden"/>
+
+            <Label Grid.Row="2" Grid.Column="0" Content="Alarm Message:" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="12" Margin="5"/>
+            <Label Grid.Row="2" Grid.Column="1" Content="Required Field!" VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="scanTimeReqField" Foreground="Red" FontSize="12" Margin="0,0,200,15" Visibility="Hidden"/>
+
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=Id}" Name="aiName" HorizontalAlignment="Left" Margin="10" FontSize="12" Width="350"/>
+            <ComboBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=IOAddress}" Name="aiAddress" FontSize="12"  Margin="10" HorizontalAlignment="Left" Width="200"/>
+            <TextBox
+              Grid.Row="2"
+              Grid.Column="1"
+              Text=""
+              Name="aiDesc"
+              TextWrapping="Wrap"
+              VerticalAlignment="Stretch"
+              MinWidth="350"
+              AcceptsReturn="True"
+              VerticalScrollBarVisibility="Auto"
+              SpellCheck.IsEnabled="True"
+              Height="35"
+              materialDesign:HintAssist.Hint="Unesite deskripciju"
+              HorizontalAlignment="Left"
+              Margin="10" 
+              FontSize="12"/>
+
+
+        </Grid>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Grid.ColumnSpan="2" Margin="0,0.4,0,0.2">
+            <Button Content="Confirm" Click="CancelButtonClick" Margin="10, 10, 10, 0" Width="120" Height="23" FontSize="12"/>
+            <Button Content="Cancel" Click="CancelButtonClick" Margin="10, 10, 10, 0" Width="120" Height="23" FontSize="12"/>
+
+
+        </StackPanel>
+
+
+    </Grid>
+</Window>

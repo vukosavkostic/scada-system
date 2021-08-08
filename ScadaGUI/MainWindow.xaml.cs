@@ -52,6 +52,7 @@ namespace ScadaGUI
         private void ExitMainWindow(object sender, RoutedEventArgs e)
         {
             Context.Dispose();
+            this.Close();
         }
 
         private void AddAlarm(object sender, RoutedEventArgs e)
