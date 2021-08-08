@@ -29,3 +29,4 @@ C:\Users\Vuko\Desktop\SCADA_System\ScadaSystem\ScadaGUI\bin\Debug\DataConcentrat
 C:\Users\Vuko\Desktop\SCADA_System\ScadaSystem\ScadaGUI\bin\Debug\PLCSimulator.pdb
 C:\Users\Vuko\Desktop\SCADA_System\ScadaSystem\ScadaGUI\bin\Debug\EntityFramework.xml
 C:\Users\Vuko\Desktop\SCADA_System\ScadaSystem\ScadaGUI\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Vuko\Desktop\SCADA_System\ScadaSystem\ScadaGUI\obj\Debug\AddTagWindow.g.cs

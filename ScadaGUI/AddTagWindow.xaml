@@ -55,12 +55,11 @@
         <Button
             Grid.Row="5"
             Grid.Column="0"
-            Style="{StaticResource MaterialDesignRaisedAccentButton}"
-            Width="{StaticResource ButtonWidth}"
-            ToolTip="Resource name: MaterialDesignRaisedAccentButton
+            Style="{StaticResource MaterialDesignFlatButton}"
+            ToolTip="MaterialDesignFlatButton"
             Content="Confirm"
             Click="AddButtonClick"
-            Margin="20"/>
+            Width="200"/>
             
     </Grid>
 </Window>
