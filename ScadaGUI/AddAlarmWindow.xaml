@@ -14,7 +14,7 @@
         Background="LightGray"
         FontFamily="{DynamicResource MaterialDesignFont}"
         
-        Title="AddTag" Height="350" Width="600" MinHeight="350" MinWidth="600" MaxHeight="350" MaxWidth="600">
+        Title="AddTag" Height="325" Width="500" MinHeight="325" MinWidth="500" MaxHeight="325" MaxWidth="500">
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="59*"/>
@@ -40,21 +40,26 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0" Content="Alarm Name:" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="12" Margin="5"/>
-            <Label Grid.Row="0" Grid.Column="1" Content="Required Field!" VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="anNameReqField" Foreground="Red" FontSize="12" Margin="0,0,0,10" Visibility="Hidden"/>
+            <Label Grid.Row="0" Grid.Column="1" Content="Required Field!" VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="alarmTypeLab" Foreground="Red" FontSize="12" Margin="0,0,0,10" Visibility="Hidden"/>
 
-            <Label Grid.Row="1" Grid.Column="0" Content="Limit Value:" FontWeight="SemiBold"  VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="12" Margin="5"/>
-            <Label Grid.Row="1" Grid.Column="1" Content="Required Field!" VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="addressReqField" Foreground="Red" FontSize="12" Margin="0,0,200,15" Visibility="Hidden"/>
+            <Label Grid.Row="1" Grid.Column="0" Content="Alarm Type:" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="12" Margin="5"/>
+            <Label Grid.Row="1" Grid.Column="1" Content="Required Field!" VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="alarmNameLab" Foreground="Red" FontSize="12" Margin="0,0,0,10" Visibility="Hidden"/>
 
-            <Label Grid.Row="2" Grid.Column="0" Content="Alarm Message:" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="12" Margin="5"/>
-            <Label Grid.Row="2" Grid.Column="1" Content="Required Field!" VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="scanTimeReqField" Foreground="Red" FontSize="12" Margin="0,0,200,15" Visibility="Hidden"/>
+            <Label Grid.Row="2" Grid.Column="0" Content="Limit Value:" FontWeight="SemiBold"  VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="12" Margin="5"/>
+            <Label Grid.Row="2" Grid.Column="1" Content="Required Field!" VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="alarmAddresLab" Foreground="Red" FontSize="12" Margin="0,0,200,15" Visibility="Hidden"/>
 
-            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=Id}" Name="aiName" HorizontalAlignment="Left" Margin="10" FontSize="12" Width="350"/>
-            <ComboBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=IOAddress}" Name="aiAddress" FontSize="12"  Margin="10" HorizontalAlignment="Left" Width="200"/>
+            <Label Grid.Row="3" Grid.Column="0" Content="Alarm Message:" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="12" Margin="5"/>
+            <Label Grid.Row="3" Grid.Column="1" Content="Required Field!" VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="alarmMessageLab" Foreground="Red" FontSize="12" Margin="0,0,200,15" Visibility="Hidden"/>
+
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=Id}" Name="alarmName" HorizontalAlignment="Left" Margin="10" FontSize="12" Width="350"/>
+            <ComboBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=AlarmType}" Name="alarmType" FontSize="12"  Margin="10" HorizontalAlignment="Left" Width="200"/>
+            <ComboBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=IOAddress}" Name="alarmAddress" FontSize="12"  Margin="10" HorizontalAlignment="Left" Width="200"/>
             <TextBox
-              Grid.Row="2"
+              Grid.Row="3"
               Grid.Column="1"
               Text=""
               Name="aiDesc"
@@ -65,7 +70,7 @@
               VerticalScrollBarVisibility="Auto"
               SpellCheck.IsEnabled="True"
               Height="35"
-              materialDesign:HintAssist.Hint="Unesite deskripciju"
+              materialDesign:HintAssist.Hint="Message"
               HorizontalAlignment="Left"
               Margin="10" 
               FontSize="12"/>
@@ -74,8 +79,8 @@
         </Grid>
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" Grid.ColumnSpan="2" Margin="0,0.4,0,0.2">
-            <Button Content="Confirm" Click="CancelButtonClick" Margin="10, 10, 10, 0" Width="120" Height="23" FontSize="12"/>
-            <Button Content="Cancel" Click="CancelButtonClick" Margin="10, 10, 10, 0" Width="120" Height="23" FontSize="12"/>
+            <Button Content="Confirm" Click="ConfirmButtonClick" Margin="10, 10, 10, 0" Width="120" Height="20" FontSize="12" VerticalAlignment="Center"/>
+            <Button Content="Cancel" Click="CancelButtonClick" Margin="10,10,10,0" Width="120" Height="20" FontSize="12" VerticalAlignment="Center"/>
 
 
         </StackPanel>

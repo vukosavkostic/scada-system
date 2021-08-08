@@ -57,7 +57,8 @@ namespace ScadaGUI
 
         private void AddAlarm(object sender, RoutedEventArgs e)
         {
-
+            AddAlarmWindow alarmWindow = new AddAlarmWindow();
+            alarmWindow.Show();
         }
 
         private void AlarmHistory(object sender, RoutedEventArgs e)

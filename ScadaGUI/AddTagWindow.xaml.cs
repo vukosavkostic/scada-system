@@ -28,5 +28,10 @@ namespace ScadaGUI
         {
             this.Close();
         }
+
+        private void ConfirmButtonClick(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }

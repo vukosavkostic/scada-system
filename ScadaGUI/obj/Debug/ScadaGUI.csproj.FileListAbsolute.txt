@@ -31,3 +31,5 @@ C:\Users\Vuko\Desktop\SCADA_System\ScadaSystem\ScadaGUI\bin\Debug\EntityFramewor
 C:\Users\Vuko\Desktop\SCADA_System\ScadaSystem\ScadaGUI\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Vuko\Desktop\SCADA_System\ScadaSystem\ScadaGUI\obj\Debug\AddTagWindow.g.cs
 C:\Users\Vuko\Desktop\SCADA_System\ScadaSystem\ScadaGUI\obj\Debug\AddTagWindow.baml
+C:\Users\Vuko\Desktop\SCADA_System\ScadaSystem\ScadaGUI\obj\Debug\AddAlarmWindow.g.cs
+C:\Users\Vuko\Desktop\SCADA_System\ScadaSystem\ScadaGUI\obj\Debug\AddAlarmWindow.baml

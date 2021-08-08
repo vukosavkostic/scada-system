@@ -91,7 +91,7 @@
         </Grid>
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" Grid.ColumnSpan="2" Margin="0,0.4,0,0.2">
-            <Button Content="Confirm" Click="CancelButtonClick" Margin="10, 10, 10, 0" Width="120" Height="23" FontSize="12"/>
+            <Button Content="Confirm" Click="ConfirmButtonClick" Margin="10, 10, 10, 0" Width="120" Height="23" FontSize="12"/>
             <Button Content="Cancel" Click="CancelButtonClick" Margin="10, 10, 10, 0" Width="120" Height="23" FontSize="12"/>
 
 
