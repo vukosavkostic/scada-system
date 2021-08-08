@@ -11,55 +11,86 @@
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
-        Background="#efeff1"
+        Background="LightGray"
         FontFamily="{DynamicResource MaterialDesignFont}"
         
-        Title="AddTag" Height="450" Width="400">
-    <Grid>
+        Title="AddTag" Height="350" Width="600" MinHeight="350" MinWidth="600" MaxHeight="350" MaxWidth="600">
+    <Grid Margin="10">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="59*"/>
+            <ColumnDefinition Width="227*"/>
         </Grid.ColumnDefinitions>
-
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="8*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Grid.Column="0" Content="Analog input name:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16"/>
-        <Label Grid.Row="0" Grid.Column="1" Content="Required Field!" VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="anNameReqField" Foreground="Red" FontSize="12"/>
 
-        <Label Grid.Row="1" Grid.Column="0" Content="Description:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16"/>
-        <Label Grid.Row="1" Grid.Column="1" Content="You must enter a number!" VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="desReqField" Foreground="Red" FontSize="12"/>
+        <materialDesign:Card
+              materialDesign:ShadowAssist.ShadowDepth="Depth1"
+              Padding="32"
+              Grid.Row="0" Grid.ColumnSpan="2" Margin="0,0,0,33.2" Grid.RowSpan="2"/>
+        <Grid Grid.Row="0" Background="#efeff1" Grid.ColumnSpan="2" Margin="0,0,0,33.2" Grid.RowSpan="2" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
 
-        <Label Grid.Row="2" Grid.Column="0" Content="I/O address:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16"/>
-        <Label Grid.Row="2" Grid.Column="1" Content="Required Field!" VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="addressReqField" Foreground="Red" FontSize="12"/>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
 
-        <Label Grid.Row="3" Grid.Column="0" Content="Scan time:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16"/>
-        <Label Grid.Row="3" Grid.Column="1" Content="Required Field!" VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="scanTimeReqField" Foreground="Red" FontSize="12"/>
+            <Label Grid.Row="0" Grid.Column="0" Content="Analog input name:" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="12" Margin="5"/>
+            <Label Grid.Row="0" Grid.Column="1" Content="Required Field!" VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="anNameReqField" Foreground="Red" FontSize="12" Margin="0,0,0,10" Visibility="Hidden"/>
 
-        <Label Grid.Row="4" Grid.Column="0" Content="Unit:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16"/>
-        <Label Grid.Row="4" Grid.Column="1" Content="Required Field!" VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="unitReqField" Foreground="Red" FontSize="12"/>
 
-        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=Id}" Name="aiName" Margin="10,25" FontSize="16"/>
-        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=Description}" Name="aiDesc" Margin="10,25" FontSize="16"/>
-        <ComboBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=IOAddress}" Name="aiAddress" FontSize="16" Margin="10,25"/>
-        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Path=ScanTime}" Name="aiScanTime" Margin="10,25" FontSize="16"/>
-        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Path=Unit}" Name="aiUnit" Margin="10,25" FontSize="16"/>
+            <Label Grid.Row="1" Grid.Column="0" Content="I/O address:" FontWeight="SemiBold"  VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="12" Margin="5"/>
+            <Label Grid.Row="1" Grid.Column="1" Content="Required Field!" VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="addressReqField" Foreground="Red" FontSize="12" Margin="0,0,200,15" Visibility="Hidden"/>
 
-        <Button Grid.Row="5" Grid.Column="1" Content="Cancel" Margin="20" Click="CancelButtonClick"/>
-        <Button
-            Grid.Row="5"
-            Grid.Column="0"
-            Style="{StaticResource MaterialDesignFlatButton}"
-            ToolTip="MaterialDesignFlatButton"
-            Content="Confirm"
-            Click="AddButtonClick"
-            Width="200"/>
-            
+            <Label Grid.Row="2" Grid.Column="0" Content="Scan time:" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="12" Margin="5"/>
+            <Label Grid.Row="2" Grid.Column="1" Content="Required Field!" VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="scanTimeReqField" Foreground="Red" FontSize="12" Margin="0,0,200,15" Visibility="Hidden"/>
+
+            <Label Grid.Row="3" Grid.Column="0" Content="Unit:" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="12" Margin="5"/>
+            <Label Grid.Row="3" Grid.Column="1" Content="Required Field!" VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="unitReqField" Foreground="Red" FontSize="12" Margin="0,0,200,15" Visibility="Hidden"/>
+
+            <Label Grid.Row="4" Grid.Column="0" Content="Description:" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="12" Margin="5"/>
+            <Label Grid.Row="4" Grid.Column="1" Content="Required Field!" VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="desReqField" Foreground="Red" FontSize="12" Margin="0,0,150,10" Visibility="Hidden"/>
+
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=Id}" Name="aiName" HorizontalAlignment="Left" Margin="10" FontSize="12" Width="350"/>
+            <ComboBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=IOAddress}" Name="aiAddress" FontSize="12"  Margin="10" HorizontalAlignment="Left" Width="200"/>
+            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=ScanTime}" Name="aiScanTime" HorizontalAlignment="Left" Margin="10" FontSize="12" Width="200"/>
+            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Path=Unit}" Name="aiUnit" HorizontalAlignment="Left" Margin="10" FontSize="12" Width="200"/>
+            <TextBox
+              Grid.Row="4"
+              Grid.Column="1"
+              Text=""
+              Name="aiDesc"
+              TextWrapping="Wrap"
+              VerticalAlignment="Stretch"
+              MinWidth="350"
+              AcceptsReturn="True"
+              VerticalScrollBarVisibility="Auto"
+              SpellCheck.IsEnabled="True"
+              Height="35"
+              materialDesign:HintAssist.Hint="Unesite deskripciju"
+              HorizontalAlignment="Left"
+              Margin="10" 
+              FontSize="12"/>
+
+
+        </Grid>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Grid.ColumnSpan="2" Margin="0,0.4,0,0.2">
+            <Button Content="Confirm" Click="CancelButtonClick" Margin="10, 10, 10, 0" Width="120" Height="23" FontSize="12"/>
+            <Button Content="Cancel" Click="CancelButtonClick" Margin="10, 10, 10, 0" Width="120" Height="23" FontSize="12"/>
+
+
+        </StackPanel>
+
+
     </Grid>
 </Window>

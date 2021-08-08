@@ -23,5 +23,10 @@ namespace ScadaGUI
         {
             InitializeComponent();
         }
+
+        private void CancelButtonClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

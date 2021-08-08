@@ -45,7 +45,8 @@ namespace ScadaGUI
 
         private void AddTag(object sender, RoutedEventArgs e)
         {
-
+            AddTagWindow tagWindow = new AddTagWindow();
+            tagWindow.Show();
         }
 
         private void ExitMainWindow(object sender, RoutedEventArgs e)
