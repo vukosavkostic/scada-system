@@ -34,12 +34,11 @@ namespace ScadaGUI
 
         public MainWindow()
         {
-            InitializeComponent();
+           InitializeComponent();
 
-            if (Context == null)
-            {
-                Context = new ScadaContext();
-            }
+           Context = new ScadaContext();
+
+
         }
 
 
@@ -51,7 +50,13 @@ namespace ScadaGUI
 
         private void ExitMainWindow(object sender, RoutedEventArgs e)
         {
-            Context.Dispose();
+            ScadaContext.Instance.Dispose();
+            PLCContext.Instance.Abort();
+            foreach (AnalogInput ai in ScadaContext.Instance.AnalogInputs)
+            {
+                ai.StartAIThread();
+            }
+
             this.Close();
         }
 
