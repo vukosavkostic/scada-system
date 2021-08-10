@@ -28,7 +28,7 @@ namespace DataConcentrator
 
         public void StopPLCSimulator()
         {
-            instance.Abort();
+            Instance.Abort();
         }
     }
 }

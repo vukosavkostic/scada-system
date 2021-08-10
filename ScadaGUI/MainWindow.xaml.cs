@@ -1,5 +1,6 @@
 ﻿using DataConcentrator;
 using DataConcentrator.Analog;
+using DataConcentrator.Digital;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,6 @@ namespace ScadaGUI
 
     public partial class MainWindow : Window
     {
-        public static ScadaContext Context { get; set; }
         public Alarm SelectedAlarm { get; set; }
         public AnalogInput SelectedAnalogInput { get; set; }
 
@@ -36,7 +36,7 @@ namespace ScadaGUI
         {
            InitializeComponent();
 
-           Context = new ScadaContext();
+           
 
 
         }
@@ -50,12 +50,19 @@ namespace ScadaGUI
 
         private void ExitMainWindow(object sender, RoutedEventArgs e)
         {
-            ScadaContext.Instance.Dispose();
-            PLCContext.Instance.Abort();
+
             foreach (AnalogInput ai in ScadaContext.Instance.AnalogInputs)
             {
-                ai.StartAIThread();
+                ai.StopAIThread();
             }
+
+            foreach (DigitalInput di in ScadaContext.Instance.DigitalInputs)
+            {
+                di.StopDThread();
+            }
+
+            ScadaContext.Instance.Dispose();
+            PLCContext.Instance.Abort();
 
             this.Close();
         }

@@ -45,7 +45,7 @@ namespace PLCSimulator
             addressValues.Add("ADDR012", 0);
 
             // DO
-            addressValues.Add("ADDR010", 0);
+            addressValues.Add("ADDR013", 0);
             addressValues.Add("ADDR014", 0);
             addressValues.Add("ADDR015", 0);
             addressValues.Add("ADDR016", 0);

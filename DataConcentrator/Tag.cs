@@ -20,6 +20,7 @@ namespace DataConcentrator
 
         #region Properties
         [Key]
+        [MaxLength(30)]
         public string Id
         {
             get
@@ -33,7 +34,7 @@ namespace DataConcentrator
                 OnPropertyChanged("Id");
             }
         }
-
+        [MaxLength(50)]
         public string Description
         {
             get

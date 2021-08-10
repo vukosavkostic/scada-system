@@ -52,24 +52,28 @@ namespace ScadaGUI
             {
                 this.tagAddress.ItemsSource = new List<string> { "ADDR009", "ADDR010", "ADDR011", "ADDR012" };
                 this.AddWindowMainGrid.DataContext = newDigitalInput;
+                this.tagScanTime.IsEnabled = true;
 
             }
             else if ((string)this.tagType.SelectedItem == "Digital Output")
             {
                 this.tagAddress.ItemsSource = new List<string> { "ADDR013", "ADDR014", "ADDR015", "ADDR016" };
                 this.AddWindowMainGrid.DataContext = newDigitalOutput;
+                this.tagScanTime.IsEnabled = false;
 
             }
             else if ((string)this.tagType.SelectedItem == "Analog Input")
             {
                 this.tagAddress.ItemsSource = new List<string> { "ADDR001", "ADDR002", "ADDR003", "ADDR004" };
                 this.AddWindowMainGrid.DataContext = newAnalogInput;
+                this.tagScanTime.IsEnabled = true;
 
             }
             else if((string)this.tagType.SelectedItem == "Analog Output")
             {
                 this.tagAddress.ItemsSource = new List<string> { "ADDR005", "ADDR006", "ADDR007", "ADDR008" };
                 this.AddWindowMainGrid.DataContext = newAnalogOutput;
+                this.tagScanTime.IsEnabled = false;
             }
 
 
@@ -79,7 +83,7 @@ namespace ScadaGUI
         private void AddTagToDatabase()
         {
 
-            if ((string)this.tagType.SelectedItem == "Digital Input")
+            if ((string)tagType.SelectedItem == "Digital Input")
             {
                 ScadaContext.Instance.DigitalInputs.Add(newDigitalInput);
                 ScadaContext.Instance.SaveChanges();
@@ -100,6 +104,7 @@ namespace ScadaGUI
                 ScadaContext.Instance.AnalogInputs.Add(newAnalogInput);
                 ScadaContext.Instance.SaveChanges();
                 newAnalogInput.StartAIThread();
+                
             }
 
             this.Close();

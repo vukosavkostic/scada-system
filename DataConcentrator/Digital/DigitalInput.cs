@@ -34,6 +34,12 @@ namespace DataConcentrator.Digital
 
 
         #region Methods
+        public DigitalInput()
+        {
+            DThread = new Thread(ScanPLCDigitalInput);
+
+        }
+
         public void StartDThread()
         {
             DThread.Start(PLCContext.Instance);

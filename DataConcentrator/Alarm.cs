@@ -49,6 +49,7 @@ namespace DataConcentrator
         }
 
         [Key]
+        [MaxLength(30)]
         public string Id
         {
             get
@@ -62,7 +63,7 @@ namespace DataConcentrator
                 OnPropertyChanged("Id");
             }
         }
-
+        [MaxLength(30)]
         public string AlarmMessage
         {
             get

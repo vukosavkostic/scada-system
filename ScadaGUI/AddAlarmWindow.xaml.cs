@@ -1,5 +1,7 @@
-﻿using System;
+﻿using DataConcentrator;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,13 +21,48 @@ namespace ScadaGUI
     /// </summary>
     public partial class AddAlarmWindow : Window
     {
+        Alarm newAlarm = new Alarm();
+
         public AddAlarmWindow()
         {
             InitializeComponent();
+
+            this.alarmType.ItemsSource = new List<string> { "Low Limit", "High Limit" };
+
+            if (ScadaContext.Instance.AnalogInputs != null)
+            {
+                ScadaContext.Instance.AnalogInputs.Load();
+
+                var imena =
+                    from aInput in ScadaContext.Instance.AnalogInputs.Local
+                    select aInput.Id;
+
+                this.analogInput.ItemsSource = imena;
+
+            }
+
+            this.MainAlarmGrid.DataContext = newAlarm;
+            
         }
 
         private void ConfirmButtonClick(object sender, RoutedEventArgs e)
         {
+            if ((string)this.alarmType.SelectedItem == "Low Limit")
+            {
+                newAlarm.AlarmType = ALARM_TYPE.LowValueAlarm;
+            }
+            else
+            {
+                newAlarm.AlarmType = ALARM_TYPE.HighValueAlarm;
+            }
+
+            newAlarm.TimeStamp = DateTime.Now;
+            newAlarm.AlarmOn = false;
+
+            ScadaContext.Instance.Alarms.Add(newAlarm);
+            ScadaContext.Instance.SaveChanges();
+
+            this.Close();
 
         }
 
@@ -33,5 +70,8 @@ namespace ScadaGUI
         {
             this.Close();
         }
+
+
+
     }
 }

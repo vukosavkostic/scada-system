@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,18 +9,15 @@ namespace DataConcentrator
 {
     public class Output : Tag
     {
-        public enum IO_ADDRESS
-        {
-
-        }
 
         #region Fields
-        private IO_ADDRESS ioAddress;
+        private string ioAddress;
         private double initialValue;
         #endregion
 
         #region Properties
-        public IO_ADDRESS IOAddress
+        [MaxLength(30)]
+        public string IOAddress
         {
             get
             {

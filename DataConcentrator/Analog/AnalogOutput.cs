@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ namespace DataConcentrator.Analog
     {
         private string unit;
 
+        [MaxLength(30)]
         public string Unit
         {
             get

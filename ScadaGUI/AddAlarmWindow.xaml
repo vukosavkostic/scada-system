@@ -14,7 +14,7 @@
         Background="LightGray"
         FontFamily="{DynamicResource MaterialDesignFont}"
         
-        Title="AddTag" Height="325" Width="500" MinHeight="325" MinWidth="500" MaxHeight="325" MaxWidth="500">
+        Title="AddAlarm" Height="325" Width="500" MinHeight="325" MinWidth="500" MaxHeight="325" MaxWidth="500">
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="59*"/>
@@ -30,13 +30,14 @@
               materialDesign:ShadowAssist.ShadowDepth="Depth1"
               Padding="32"
               Grid.Row="0" Grid.ColumnSpan="2" Margin="0,0,0,33.2" Grid.RowSpan="2"/>
-        <Grid Grid.Row="0" Background="#efeff1" Grid.ColumnSpan="2" Margin="0,0,0,33.2" Grid.RowSpan="2" >
+        <Grid Grid.Row="0" Background="#efeff1" Grid.ColumnSpan="2" Margin="0,0,0,33.2" Grid.RowSpan="2" Name="MainAlarmGrid">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
+                <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -49,17 +50,21 @@
             <Label Grid.Row="1" Grid.Column="0" Content="Alarm Type:" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="12" Margin="5"/>
             <Label Grid.Row="1" Grid.Column="1" Content="Required Field!" VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="alarmNameLab" Foreground="Red" FontSize="12" Margin="0,0,0,10" Visibility="Hidden"/>
 
-            <Label Grid.Row="2" Grid.Column="0" Content="Limit Value:" FontWeight="SemiBold"  VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="12" Margin="5"/>
-            <Label Grid.Row="2" Grid.Column="1" Content="Required Field!" VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="alarmAddresLab" Foreground="Red" FontSize="12" Margin="0,0,200,15" Visibility="Hidden"/>
+            <Label Grid.Row="2" Grid.Column="0" Content="Analog Input:" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="12" Margin="5"/>
+            <Label Grid.Row="2" Grid.Column="1" Content="Required Field!" VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="analogInputLab" Foreground="Red" FontSize="12" Margin="0,0,200,15" Visibility="Hidden"/>
 
-            <Label Grid.Row="3" Grid.Column="0" Content="Alarm Message:" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="12" Margin="5"/>
-            <Label Grid.Row="3" Grid.Column="1" Content="Required Field!" VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="alarmMessageLab" Foreground="Red" FontSize="12" Margin="0,0,200,15" Visibility="Hidden"/>
+            <Label Grid.Row="3" Grid.Column="0" Content="Limit Value:" FontWeight="SemiBold"  VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="12" Margin="5"/>
+            <Label Grid.Row="3" Grid.Column="1" Content="Required Field!" VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="alarmAddresLab" Foreground="Red" FontSize="12" Margin="0,0,200,15" Visibility="Hidden"/>
+
+            <Label Grid.Row="4" Grid.Column="0" Content="Alarm Message:" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="12" Margin="5"/>
+            <Label Grid.Row="4" Grid.Column="1" Content="Required Field!" VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="alarmMessageLab" Foreground="Red" FontSize="12" Margin="0,0,200,15" Visibility="Hidden"/>
 
             <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=Id}" Name="alarmName" HorizontalAlignment="Left" Margin="10" FontSize="12" Width="350"/>
-            <ComboBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=AlarmType}" Name="alarmType" FontSize="12"  Margin="10" HorizontalAlignment="Left" Width="200"/>
-            <ComboBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=IOAddress}" Name="alarmAddress" FontSize="12"  Margin="10" HorizontalAlignment="Left" Width="200"/>
+            <ComboBox Grid.Row="1" Grid.Column="1" Name="alarmType" FontSize="12"  Margin="10" HorizontalAlignment="Left" Width="200"/>
+            <ComboBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=AnalogInputTagName}" Name="analogInput" FontSize="12"  Margin="10" HorizontalAlignment="Left" Width="200"/>
+            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Path=LimitValue}" Name="alarmAddress" FontSize="12"  Margin="10" HorizontalAlignment="Left" Width="200"/>
             <TextBox
-              Grid.Row="3"
+              Grid.Row="4"
               Grid.Column="1"
               Text=""
               Name="aiDesc"
