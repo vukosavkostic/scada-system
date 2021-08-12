@@ -28,9 +28,7 @@ namespace ScadaGUI
     public partial class MainWindow : Window
     {
         public Alarm SelectedAlarm { get; set; }
-        public AnalogInput SelectedAnalogInput { get; set; }
-
-    
+        public AnalogInput SelectedTag { get; set; }
 
         public MainWindow()
         {

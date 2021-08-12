@@ -6,14 +6,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
+
 namespace DataConcentrator
 {
+
+    
     public class Tag : INotifyPropertyChanged
     {
         #region Fields
         private string id;
         private string description;
-
+        private string tagType;
 
         public event PropertyChangedEventHandler PropertyChanged;
         #endregion
@@ -48,6 +52,20 @@ namespace DataConcentrator
                 OnPropertyChanged("Description");
             }
 
+        }
+
+        public string TagType
+        {
+            get
+            {
+                return tagType;
+            }
+
+            set
+            {
+                tagType = value;
+                OnPropertyChanged("TagType");
+            }
         }
         #endregion
 
