@@ -46,13 +46,12 @@ namespace ScadaGUI
         //Poziva se kada se desi TagType value change
         private void SetupAddWindow(object sender, SelectionChangedEventArgs e)
         {
-            this.tagAddress.SelectedValue = "";
-
             if ((string)this.tagType.SelectedItem == "Digital Input")
             {
                 this.tagAddress.ItemsSource = new List<string> { "ADDR009", "ADDR010", "ADDR011", "ADDR012" };
                 this.AddWindowMainGrid.DataContext = newDigitalInput;
                 this.tagScanTime.IsEnabled = true;
+                this.tagUnit.IsEnabled = false;
 
             }
             else if ((string)this.tagType.SelectedItem == "Digital Output")
@@ -60,6 +59,7 @@ namespace ScadaGUI
                 this.tagAddress.ItemsSource = new List<string> { "ADDR013", "ADDR014", "ADDR015", "ADDR016" };
                 this.AddWindowMainGrid.DataContext = newDigitalOutput;
                 this.tagScanTime.IsEnabled = false;
+                this.tagUnit.IsEnabled = false;
 
             }
             else if ((string)this.tagType.SelectedItem == "Analog Input")
@@ -67,6 +67,7 @@ namespace ScadaGUI
                 this.tagAddress.ItemsSource = new List<string> { "ADDR001", "ADDR002", "ADDR003", "ADDR004" };
                 this.AddWindowMainGrid.DataContext = newAnalogInput;
                 this.tagScanTime.IsEnabled = true;
+                this.tagUnit.IsEnabled = true;
 
             }
             else if((string)this.tagType.SelectedItem == "Analog Output")
@@ -74,6 +75,7 @@ namespace ScadaGUI
                 this.tagAddress.ItemsSource = new List<string> { "ADDR005", "ADDR006", "ADDR007", "ADDR008" };
                 this.AddWindowMainGrid.DataContext = newAnalogOutput;
                 this.tagScanTime.IsEnabled = false;
+                this.tagUnit.IsEnabled = true;
             }
 
 

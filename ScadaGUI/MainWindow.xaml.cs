@@ -3,6 +3,7 @@ using DataConcentrator.Analog;
 using DataConcentrator.Digital;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,9 +33,13 @@ namespace ScadaGUI
 
         public MainWindow()
         {
-           InitializeComponent();
+            InitializeComponent();
 
-           
+            IEnumerable<ViewModelTag> dataGridItems = makeViewData();
+            this.DataGrid.ItemsSource = dataGridItems;
+
+
+
 
 
         }
@@ -78,6 +83,66 @@ namespace ScadaGUI
 
         private void DarkMode_Clicked(object sender, RoutedEventArgs e)
         {
+
+        }
+
+        private IEnumerable<ViewModelTag> makeViewData()
+        {
+            ScadaContext.Instance.AnalogInputs.Load();
+
+            IEnumerable<ViewModelTag> AnalogInputViewModel =
+                from aiV in ScadaContext.Instance.AnalogInputs.Local
+                select new ViewModelTag
+                {
+                    Id = aiV.Id,
+                    TagType = aiV.TagType,
+                    Address = aiV.IOAddress,
+                    Value = aiV.Value,
+                    Unit = aiV.Unit
+                };
+
+            ScadaContext.Instance.AnalogOutputs.Load();
+            
+            IEnumerable<ViewModelTag> AnalogOutputViewModel =
+                from aoV in ScadaContext.Instance.AnalogOutputs.Local
+                select new ViewModelTag
+                {
+                    Id = aoV.Id,
+                    TagType = aoV.TagType,
+                    Address = aoV.IOAddress,
+                    Value = aoV.InitialValue,
+                    Unit = "/"
+                };
+
+            ScadaContext.Instance.DigitalInputs.Load();
+
+            IEnumerable<ViewModelTag> DigitalInputViewModel =
+                from diV in ScadaContext.Instance.DigitalInputs.Local
+                select new ViewModelTag
+                {
+                    Id = diV.Id,
+                    TagType = diV.TagType,
+                    Address = diV.IOAddress,
+                    Value = diV.Value ? 1 : 0,
+                    Unit = "/"
+                };
+
+            ScadaContext.Instance.DigitalOutputs.Load();
+
+            IEnumerable<ViewModelTag> DigitalOutputViewModel =
+                  from doV in ScadaContext.Instance.DigitalOutputs.Local
+                  select new ViewModelTag
+                  {
+                      Id = doV.Id,
+                      TagType = doV.TagType,
+                      Address = doV.IOAddress,
+                      Value = doV.InitialValue,
+                      Unit = "/"
+                  };
+
+            var CombinedViewModel = AnalogInputViewModel.Concat(AnalogOutputViewModel).Concat(DigitalInputViewModel).Concat(DigitalOutputViewModel);
+
+            return CombinedViewModel;
 
         }
     }

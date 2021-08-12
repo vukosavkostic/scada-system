@@ -14,14 +14,5 @@ namespace DataConcentrator
         public double Value { get; set; }
         public string Unit { get; set; }
 
-
-        public ViewModelTag(string id,  string tagType, string address, double value, string unit)
-        {
-            Id = id;
-            TagType = tagType;
-            Address = address;
-            Value = value;
-            Unit = unit;
-        }
     }
 }

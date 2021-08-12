@@ -65,7 +65,7 @@
             <Label Grid.Row="5" Grid.Column="0" Content="Description:" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="12" Margin="15"/>
             <Label Grid.Row="5" Grid.Column="1" Content="Required Field!" VerticalAlignment="Bottom" HorizontalAlignment="Center" Name="tagDescLab" Foreground="Red" FontSize="12" Margin="0,0,150,10" Visibility="Hidden"/>
 
-            <ComboBox Grid.Row="0" Grid.Column="1" Name="tagType" FontSize="12"  Margin="10" HorizontalAlignment="Left" Width="200" SelectionChanged="SetupAddWindow"/>
+            <ComboBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=TagType}"  Name="tagType" FontSize="12"  Margin="10" HorizontalAlignment="Left" Width="200" SelectionChanged="SetupAddWindow"/>
             <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=Id}" Name="tagName" HorizontalAlignment="Left" Margin="10" FontSize="12" Width="350"/>
             <ComboBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=IOAddress}" Name="tagAddress" FontSize="12"  Margin="10" HorizontalAlignment="Left" Width="200"/>
             <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Path=ScanTime}" Name="tagScanTime" HorizontalAlignment="Left" Margin="10" FontSize="12" Width="200"/>

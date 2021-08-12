@@ -11,7 +11,7 @@ namespace DataConcentrator.Analog
 {
     public delegate void ValueHandler(string name);
 
-    public class AnalogInput : Input 
+    public class AnalogInput : Input
     {
         public enum AnalogInputStatus
         {

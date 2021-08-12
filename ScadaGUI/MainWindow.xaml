@@ -170,9 +170,9 @@
               Grid.Row="2"/>
         <DataGrid Grid.Row="2"  Name ="DataGrid"  SelectedItem="{Binding SelectedTag}" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Tag ID" Binding="{Binding TagId}" Width="*"/>
+                <DataGridTextColumn Header="Tag ID" Binding="{Binding Id}" Width="*"/>
                 <DataGridTextColumn Header="Tag Type" Binding="{Binding TagType}" Width="*"/>
-                <DataGridTextColumn Header="Address" Binding="{Binding Adress}" Width="*"/>
+                <DataGridTextColumn Header="Address" Binding="{Binding Address}" Width="*"/>
                 <DataGridTextColumn Header="Value" Binding="{Binding Value}" Width="*"/>
                 <DataGridTextColumn Header="Unit" Binding="{Binding Unit}" Width="*"/>
             </DataGrid.Columns>
