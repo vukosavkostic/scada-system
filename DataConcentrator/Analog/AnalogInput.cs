@@ -117,42 +117,45 @@ namespace DataConcentrator.Analog
                 {
                     Value = ((PLCSimulatorManager)obj).GetAnalogValue(IOAddress);
 
-                    foreach (Alarm al in Alarms)
+                    if (Alarms != null)
                     {
-                        if (al.AlarmType == ALARM_TYPE.LowValueAlarm)
+                        foreach (Alarm al in Alarms)
                         {
-                            if (Value <= al.LimitValue)
+                            if (al.AlarmType == ALARM_TYPE.LowValueAlarm)
                             {
-                                al.AlarmOn = true;
-                                Status = AnalogInputStatus.ALARMING;
-                                ValueChangedToCritical?.Invoke(al.Id);
+                                if (Value <= al.LimitValue)
+                                {
+                                    al.AlarmOn = true;
+                                    Status = AnalogInputStatus.ALARMING;
+                                    ValueChangedToCritical?.Invoke(al.Id);
+                                }
+
+                                else
+                                {
+                                    al.AlarmOn = false;
+                                    Status = AnalogInputStatus.REGULAR;
+                                }
+
                             }
 
-                            else
+                            if (al.AlarmType == ALARM_TYPE.HighValueAlarm)
                             {
-                                al.AlarmOn = false;
-                                Status = AnalogInputStatus.REGULAR;
+                                if (Value >= al.LimitValue)
+                                {
+                                    al.AlarmOn = true;
+                                    Status = AnalogInputStatus.ALARMING;
+                                    ValueChangedToCritical?.Invoke(al.Id);
+                                }
+
+                                else
+                                {
+                                    al.AlarmOn = false;
+                                    Status = AnalogInputStatus.REGULAR;
+                                }
+
                             }
 
                         }
-
-                        if (al.AlarmType == ALARM_TYPE.HighValueAlarm)
-                        {
-                            if (Value >= al.LimitValue)
-                            {
-                                al.AlarmOn = true;
-                                Status = AnalogInputStatus.ALARMING;
-                                ValueChangedToCritical?.Invoke(al.Id);
-                            }
-
-                            else
-                            {
-                                al.AlarmOn = false;
-                                Status = AnalogInputStatus.REGULAR;
-                            }
-
-                        }
-
                     }
 
 

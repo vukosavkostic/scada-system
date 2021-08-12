@@ -31,6 +31,7 @@ namespace ScadaGUI
         {
             InitializeComponent();
             this.tagType.ItemsSource = new List<string> { "Digital Input", "Digital Output", "Analog Input", "Analog Output" };
+            
         }
 
         private void CancelButtonClick(object sender, RoutedEventArgs e)
@@ -111,5 +112,7 @@ namespace ScadaGUI
 
             this.Close();
         }
+
+
     }
 }
