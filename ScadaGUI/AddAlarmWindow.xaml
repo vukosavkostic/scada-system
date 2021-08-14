@@ -62,11 +62,11 @@
             <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=Id}" Name="alarmName" HorizontalAlignment="Left" Margin="10" FontSize="12" Width="350"/>
             <ComboBox Grid.Row="1" Grid.Column="1" Name="alarmType" FontSize="12"  Margin="10" HorizontalAlignment="Left" Width="200"/>
             <ComboBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=AnalogInputTagName}" Name="analogInput" FontSize="12"  Margin="10" HorizontalAlignment="Left" Width="200"/>
-            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Path=LimitValue}" Name="alarmAddress" FontSize="12"  Margin="10" HorizontalAlignment="Left" Width="200"/>
+            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Path=LimitValue}" Name="alarmLimitValue" FontSize="12"  Margin="10" HorizontalAlignment="Left" Width="200"/>
             <TextBox
               Grid.Row="4"
               Grid.Column="1"
-              Text=""
+              Text="{Binding Path=AlarmMessage}"
               Name="aiDesc"
               TextWrapping="Wrap"
               VerticalAlignment="Stretch"

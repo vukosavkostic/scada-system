@@ -32,13 +32,20 @@ namespace ScadaGUI
         public Alarm SelectedAlarm { get; set; }
         public AnalogInput SelectedTag { get; set; }
         private Thread mainThread;
+        private IEnumerable<ViewModelTag> viewData;
 
         public MainWindow()
         {
             InitializeComponent();
-            mainThread = new Thread(MakeViewData);
-            mainThread.Start();
+///mainThread = new Thread(MakeViewData);
+            //mainThread.Start();
             StartScan();
+
+
+
+            this.DataGrid.ItemsSource = viewData;
+            ScadaContext.Instance.Alarms.Load();
+            this.AlarmGrid.ItemsSource = ScadaContext.Instance.Alarms.Local;
 
 
 
@@ -56,7 +63,7 @@ namespace ScadaGUI
 
         private void ExitMainWindow(object sender, RoutedEventArgs e)
         {
-            mainThread.Abort();
+            //mainThread.Abort();
             foreach (AnalogInput ai in ScadaContext.Instance.AnalogInputs)
             {
                 ai.StopAIThread();
@@ -92,7 +99,8 @@ namespace ScadaGUI
 
         private void MakeViewData(object obj)
         {
-            this.Dispatcher.Invoke(() =>
+
+            while (true)
             {
                 ScadaContext.Instance.AnalogInputs.Load();
 
@@ -147,12 +155,13 @@ namespace ScadaGUI
                       };
 
                 var CombinedViewModel = AnalogInputViewModel.Concat(AnalogOutputViewModel).Concat(DigitalInputViewModel).Concat(DigitalOutputViewModel);
-
-                this.DataGrid.ItemsSource = CombinedViewModel;
-            });
+                this.viewData = CombinedViewModel.ToList();
+            }
+            
+            
         }
 
-        public void StartScan()
+        private void StartScan()
         {
             foreach (AnalogInput ai in ScadaContext.Instance.AnalogInputs)
             {
@@ -164,5 +173,6 @@ namespace ScadaGUI
                 di.StartDThread();
             }
         }
+ 
     }
 }

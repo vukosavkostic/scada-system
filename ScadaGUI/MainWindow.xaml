@@ -192,11 +192,25 @@
             </Grid>
             <DataGrid Name ="AlarmGrid" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Alarm Name" Binding="{Binding AlarmName}" Width="*"/>
+                    <DataGridTextColumn Header="Alarm Name" Binding="{Binding Id}" Width="*"/>
                     <DataGridTextColumn Header="Limit Value" Binding="{Binding LimitValue}" Width="*"/>
                     <DataGridTextColumn Header="Alarm Message" Binding="{Binding AlarmMessage}" Width="*"/>
                     <DataGridTextColumn Header="Time Stamp" Binding="{Binding TimeStamp}" Width="*"/>
                 </DataGrid.Columns>
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding AlarmOn}" Value="True">
+                                <Setter Property="Background" Value="Red"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding AlarmOn}" Value="False">
+                                <Setter Property="Background" Value="White"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.RowStyle>
+
+
             </DataGrid>
         </StackPanel>
             
