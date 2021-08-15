@@ -17,7 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using System.Windows.Threading;
 
 namespace ScadaGUI
 {
@@ -37,13 +37,11 @@ namespace ScadaGUI
         public MainWindow()
         {
             InitializeComponent();
-///mainThread = new Thread(MakeViewData);
-            //mainThread.Start();
+            mainThread = new Thread(MakeViewData);
+            mainThread.Start();
             StartScan();
 
 
-
-            this.DataGrid.ItemsSource = viewData;
             ScadaContext.Instance.Alarms.Load();
             this.AlarmGrid.ItemsSource = ScadaContext.Instance.Alarms.Local;
 
@@ -63,7 +61,7 @@ namespace ScadaGUI
 
         private void ExitMainWindow(object sender, RoutedEventArgs e)
         {
-            //mainThread.Abort();
+            mainThread.Abort();
             foreach (AnalogInput ai in ScadaContext.Instance.AnalogInputs)
             {
                 ai.StopAIThread();
@@ -155,7 +153,14 @@ namespace ScadaGUI
                       };
 
                 var CombinedViewModel = AnalogInputViewModel.Concat(AnalogOutputViewModel).Concat(DigitalInputViewModel).Concat(DigitalOutputViewModel);
-                this.viewData = CombinedViewModel.ToList();
+                Dispatcher.BeginInvoke(
+                    DispatcherPriority.Normal,
+                    (Action)delegate
+                    {
+                        this.DataGrid.ItemsSource = CombinedViewModel.ToList();
+                    });
+
+                Thread.Sleep(300);
             }
             
             
