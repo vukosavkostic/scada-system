@@ -152,7 +152,7 @@ namespace DataConcentrator
         public string alarmForTextFile()
         {
             string retval = "";
-            retval += $"/ ID: {Id}, Last Time Activated: {TimeStamp}, Analog Input: {AnalogInputTagName}, Message: {AlarmMessage} /\n";
+            retval += $"/ [ID: {Id}], [Last Time Activated: {TimeStamp}] [Analog Input: {AnalogInputTagName}] [Message: {AlarmMessage}] /\n";
             return retval;
         }
         #endregion

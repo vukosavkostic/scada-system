@@ -85,31 +85,54 @@ namespace ScadaGUI
 
         private void AddTagToDatabase()
         {
+            try
+            {
+                if ((string)tagType.SelectedItem == "Digital Input")
+                {
+                    ScadaContext.Instance.DigitalInputs.Add(newDigitalInput);
+                    ScadaContext.Instance.SaveChanges();
+                    newDigitalInput.StartDThread();
+                }
+                else if ((string)this.tagType.SelectedItem == "Digital Output")
+                {
+                    ScadaContext.Instance.DigitalOutputs.Add(newDigitalOutput);
+                    ScadaContext.Instance.SaveChanges();
+                }
+                else if ((string)this.tagType.SelectedItem == "Analog Output")
+                {
+                    ScadaContext.Instance.AnalogOutputs.Add(newAnalogOutput);
+                    ScadaContext.Instance.SaveChanges();
+                }
+                else if ((string)this.tagType.SelectedItem == "Analog Input")
+                {
+                    ScadaContext.Instance.AnalogInputs.Add(newAnalogInput);
+                    ScadaContext.Instance.SaveChanges();
+                    newAnalogInput.StartAIThread();
 
-            if ((string)tagType.SelectedItem == "Digital Input")
-            {
-                ScadaContext.Instance.DigitalInputs.Add(newDigitalInput);
-                ScadaContext.Instance.SaveChanges();
-                newDigitalInput.StartDThread();
+                }
+        }
+        
+        catch (System.Data.Entity.Infrastructure.DbUpdateException)
+        {
+            MessageBox.Show("Item already exist, please add another item");
+                if ((string)tagType.SelectedItem == "Digital Input")
+                {
+                    ScadaContext.Instance.DigitalInputs.Remove(newDigitalInput);
+                }
+                else if ((string)this.tagType.SelectedItem == "Digital Output")
+                {
+                    ScadaContext.Instance.DigitalOutputs.Remove(newDigitalOutput);
+                }
+                else if ((string)this.tagType.SelectedItem == "Analog Output")
+                {
+                    ScadaContext.Instance.AnalogOutputs.Remove(newAnalogOutput);
+                }
+                else if ((string)this.tagType.SelectedItem == "Analog Input")
+                {
+                    ScadaContext.Instance.AnalogInputs.Remove(newAnalogInput);
+                }
             }
-            else if ((string)this.tagType.SelectedItem == "Digital Output")
-            {
-                ScadaContext.Instance.DigitalOutputs.Add(newDigitalOutput);
-                ScadaContext.Instance.SaveChanges();
-            }
-            else if ((string)this.tagType.SelectedItem == "Analog Output")
-            {
-                ScadaContext.Instance.AnalogOutputs.Add(newAnalogOutput);
-                ScadaContext.Instance.SaveChanges();
-            }
-            else if((string)this.tagType.SelectedItem == "Analog Input")
-            {
-                ScadaContext.Instance.AnalogInputs.Add(newAnalogInput);
-                ScadaContext.Instance.SaveChanges();
-                newAnalogInput.StartAIThread();
-                
-            }
-
+        
             this.Close();
         }
 

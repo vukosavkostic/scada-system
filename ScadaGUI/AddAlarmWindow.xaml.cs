@@ -42,6 +42,7 @@ namespace ScadaGUI
             }
 
             this.MainAlarmGrid.DataContext = newAlarm;
+            this.DataContext = this;
             
         }
 
@@ -57,10 +58,20 @@ namespace ScadaGUI
             }
 
             newAlarm.AlarmOn = false;
+            newAlarm.TimeStamp = new DateTime(1999,7,18,12,0,0);
 
-            ScadaContext.Instance.Alarms.Add(newAlarm);
-            ScadaContext.Instance.SaveChanges();
+            try
+            {
+                ScadaContext.Instance.Alarms.Add(newAlarm);
+                ScadaContext.Instance.SaveChanges();
+            }
+            catch(System.Data.Entity.Infrastructure.DbUpdateException)
+            {
+                MessageBox.Show("Item already exist, please add another item");
+                ScadaContext.Instance.Alarms.Remove(newAlarm);
+            }
 
+            
             this.Close();
 
         }

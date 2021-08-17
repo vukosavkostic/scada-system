@@ -36,13 +36,13 @@
               SpellCheck.IsEnabled="True"
               HorizontalAlignment="Center"
               IsReadOnly="True"
-              FontSize="16"
+              FontSize="12"
               Width="800" 
               Grid.ColumnSpan="2"
               Height="385"/>
 
 
-        <Button Grid.Row="1" Content="Cancel" Click="CancelButtonClick" HorizontalAlignment="Center" Width="150" Height="25" FontSize="12"/>
+        <Button Grid.Row="1" Content="Cancel" Click="CancelButtonClick" HorizontalAlignment="Center" Width="150" Height="25" FontSize="12" Margin="0, 6, 0 ,0"/>
 
     </Grid>
 </Window>

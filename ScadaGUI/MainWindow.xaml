@@ -13,7 +13,7 @@
         TextOptions.TextRenderingMode="Auto"
         Background="#efeff1"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="SCADA" Height="600" Width="800" MinHeight="600" MinWidth="800">
+        Title="SCADA" Height="800" Width="1240" MinHeight="800" MinWidth="1240">
 
 
     <Grid Margin="10">
@@ -179,12 +179,22 @@
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Details" Click="TagDetails"/>
-                    <MenuItem Header="Delete" Click="DeleteTag"/>
+                    <MenuItem Header="Details" Click="TagDetails">
+                        <MenuItem.Icon>
+                            <materialDesign:PackIcon Kind="DotsHorizontalCircle" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Delete" Click="DeleteTag">
+                        <MenuItem.Icon>
+                            <materialDesign:PackIcon Kind="DeleteCircle"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
                     <MenuItem Name="ChangeValue" 
                               Header="Change Value"
                               Click="TagDetails">
-      
+                        <MenuItem.Icon>
+                            <materialDesign:PackIcon Kind="FlashCircle" />
+                        </MenuItem.Icon>
                     </MenuItem>
                 </ContextMenu>
             </DataGrid.ContextMenu>
@@ -202,27 +212,35 @@
                 <Rectangle Fill="#f5f5f5"/>
                 <Label Content="Alarm List" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="ExtraLight"/>
             </Grid>
-            <DataGrid Name ="AlarmGrid" SelectedItem="{Binding SelectedAlarm}" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" MaxHeight="250">
+            <DataGrid Name ="AlarmGrid" SelectedItem="{Binding SelectedAlarm}" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" MaxHeight="200" RowHeight="40">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Alarm Name" Binding="{Binding Id}" Width="*"/>
                     <DataGridTextColumn Header="Limit Value" Binding="{Binding LimitValue}" Width="*"/>
                     <DataGridTextColumn Header="Alarm Message" Binding="{Binding AlarmMessage}" Width="*"/>
-                    <DataGridTextColumn Header="Time Stamp" Binding="{Binding TimeStamp}" Width="*"/>
+                    <DataGridTextColumn Header="Last Time Activated" Binding="{Binding TimeStamp}" Width="*"/>
                 </DataGrid.Columns>
                 <DataGrid.ContextMenu>
                     <ContextMenu>
-                        <MenuItem Header="Details" Click="AlarmDetails"/>
-                        <MenuItem Header="Delete" Click="DeleteAlarm"/>
+                        <MenuItem Header="Details" Click="AlarmDetails" HorizontalAlignment="Left">
+                            <MenuItem.Icon>
+                                <materialDesign:PackIcon Kind="DotsHorizontalCircle" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Delete" Click="DeleteAlarm" HorizontalAlignment="Left">
+                            <MenuItem.Icon>
+                                <materialDesign:PackIcon Kind="DeleteCircle"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
                     </ContextMenu>
                 </DataGrid.ContextMenu>
                 <DataGrid.RowStyle>
                     <Style TargetType="DataGridRow">
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding AlarmOn}" Value="True">
-                                <Setter Property="Background" Value="Red"/>
+                                <Setter Property="Background" Value="#ffa7a5"/>
                             </DataTrigger>
                             <DataTrigger Binding="{Binding AlarmOn}" Value="False">
-                                <Setter Property="Background" Value="White"/>
+                                <Setter Property="Background" Value="#dcedc8"/>
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
