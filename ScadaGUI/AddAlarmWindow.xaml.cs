@@ -56,7 +56,6 @@ namespace ScadaGUI
                 newAlarm.AlarmType = ALARM_TYPE.HighValueAlarm;
             }
 
-            newAlarm.TimeStamp = DateTime.Now;
             newAlarm.AlarmOn = false;
 
             ScadaContext.Instance.Alarms.Add(newAlarm);

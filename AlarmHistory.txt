@@ -1,0 +1,11 @@
+/ ID: Alarm3, Last Time Activated: 8/17/2021 8:04:31 PM, Analog Input: AnalogInput3, Message: Nizak nivo vode! /
+/ ID: Alarm1, Last Time Activated: 8/17/2021 8:04:31 PM, Analog Input: AnalogInput1, Message: mes /
+/ ID: Alarm4, Last Time Activated: 8/17/2021 8:04:36 PM, Analog Input: AnalogInput2, Message: al /
+/ ID: Alarm3, Last Time Activated: 8/17/2021 8:07:12 PM, Analog Input: AnalogInput3, Message: Nizak nivo vode! /
+/ ID: Alarm1, Last Time Activated: 8/17/2021 8:07:12 PM, Analog Input: AnalogInput1, Message: mes /
+/ ID: Alarm3, Last Time Activated: 8/17/2021 8:07:30 PM, Analog Input: AnalogInput3, Message: Nizak nivo vode! /
+/ ID: Alarm1, Last Time Activated: 8/17/2021 8:07:30 PM, Analog Input: AnalogInput1, Message: mes /
+/ ID: Alarm4, Last Time Activated: 8/17/2021 8:07:36 PM, Analog Input: AnalogInput2, Message: al /
+/ ID: Alarm3, Last Time Activated: 8/17/2021 8:12:51 PM, Analog Input: AnalogInput3, Message: Nizak nivo vode! /
+/ ID: Alarm1, Last Time Activated: 8/17/2021 8:12:51 PM, Analog Input: AnalogInput1, Message: mes /
+/ ID: Alarm4, Last Time Activated: 8/17/2021 8:12:51 PM, Analog Input: AnalogInput2, Message: al /

@@ -25,6 +25,8 @@ namespace DataConcentrator
         private DateTime timeStamp;
         private ALARM_TYPE alarmType;
         private bool alarmOn;
+        //Functionality only needed for writing alarm in AlarmHistory.txt file
+        public DateTime lastTimeActivated;
 
         [ForeignKey("AnalogInput")]
         public string AnalogInputTagName { get; set; }
@@ -135,13 +137,23 @@ namespace DataConcentrator
         public override string ToString()
         {
             string retVal = "";
-            retVal += $"Alarm ID: {Id}\n\n"
+            retVal += "------------------------\n\n"
+                    + $"Alarm ID: {Id}\n\n"
                     + $"Alarm Limit Value: {LimitValue}\n\n"
+                    + $"Alarm Type: {AlarmType}\n\n"
                     + $"Alarm Message: {AlarmMessage}\n\n"
-                    + $"Alarm TimeStamp: {TimeStamp}\n\n"
-                    + $"Analog Input: {AnalogInputTagName}\n\n";
+                    + $"Alarm Activated: {TimeStamp}\n\n"
+                    + $"Analog Input: {AnalogInputTagName}\n\n"
+                    +"------------------------\n\n";
 
             return retVal;
+        }
+
+        public string alarmForTextFile()
+        {
+            string retval = "";
+            retval += $"/ ID: {Id}, Last Time Activated: {TimeStamp}, Analog Input: {AnalogInputTagName}, Message: {AlarmMessage} /\n";
+            return retval;
         }
         #endregion
     }

@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Vuko\Desktop\SCADA_System\ScadaSystem\ScadaGUI\App.xaml
-31148128687
+4-401493215
 
-81605378601
+9278512666
 202140512908
-AddAlarmWindow.xaml;AddTagWindow.xaml;MainWindow.xaml;
+AddAlarmWindow.xaml;AddTagWindow.xaml;AlarmHistory.xaml;MainWindow.xaml;
 
 True
 

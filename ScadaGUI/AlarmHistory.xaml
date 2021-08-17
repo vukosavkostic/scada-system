@@ -1,0 +1,48 @@
+﻿<Window x:Class="ScadaGUI.AlarmHistory"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ScadaGUI"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="LightGray"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="AlarmHistory" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="9*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <materialDesign:Card
+              materialDesign:ShadowAssist.ShadowDepth="Depth1"
+              Padding="32"
+              Grid.Row="0" 
+              Margin="0,0,0,33"
+              Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+        <TextBox
+             Grid.Row="0"
+              Name="alarmHistoryTextbox"
+              TextWrapping="Wrap"
+              VerticalAlignment="Stretch"
+              AcceptsReturn="True"
+              VerticalScrollBarVisibility="Auto"
+              SpellCheck.IsEnabled="True"
+              HorizontalAlignment="Center"
+              IsReadOnly="True"
+              FontSize="16"
+              Width="800" 
+              Grid.ColumnSpan="2"
+              Height="385"/>
+
+
+        <Button Grid.Row="1" Content="Cancel" Click="CancelButtonClick" HorizontalAlignment="Center" Width="150" Height="25" FontSize="12"/>
+
+    </Grid>
+</Window>

@@ -4,6 +4,7 @@ using DataConcentrator.Digital;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -34,12 +35,12 @@ namespace ScadaGUI
         private Thread dataThread;
         private object locker = new object();
 
-
         public MainWindow()
         {
             InitializeComponent();
             //dataThread = new Thread(MakeViewData);
             //dataThread.Start();
+            CreateAlarmTextFile();
 
             ScadaContext.Instance.Alarms.Load();
             this.AlarmGrid.ItemsSource = ScadaContext.Instance.Alarms.Local;
@@ -50,10 +51,6 @@ namespace ScadaGUI
             StartScan();
 
             this.DataContext = this;
-
-
-
-
 
         }
 
@@ -93,7 +90,8 @@ namespace ScadaGUI
 
         private void AlarmHistory(object sender, RoutedEventArgs e)
         {
-
+            AlarmHistory alarmHistory = new AlarmHistory();
+            alarmHistory.Show();
         }
 
         private void DarkMode_Clicked(object sender, RoutedEventArgs e)
@@ -225,6 +223,20 @@ namespace ScadaGUI
             foreach (DigitalInput di in ScadaContext.Instance.DigitalInputs)
             {
                 di.StartDThread();
+            }
+        }
+
+        private void CreateAlarmTextFile()
+        {
+            if (!File.Exists(AnalogInput.path))
+            {
+                File.Create(AnalogInput.path).Dispose();
+                using( TextWriter tw = new StreamWriter(AnalogInput.path))
+                {
+                    tw.WriteLine("------------------ ALARM HISTORY ------------------ ");
+                }
+
+                Console.WriteLine("Creating AlarmHistory file...");
             }
         }
  

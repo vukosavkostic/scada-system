@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -30,6 +31,11 @@ namespace DataConcentrator.Analog
         // Event triggers when a value is above or below critical level
         public ValueHandler ValueChangedToCritical;
         private object locker = new object();
+        private static TimeSpan tresholdHighValue = TimeSpan.Zero;
+        private static TimeSpan tresholdLowValue = TimeSpan.Zero;
+        private int delayAlarmFor = 5;
+        public static string path = @"..\\..\\..\\AlarmHistory.txt";
+        //Where AlarmHistory.txt file is located
         #endregion
 
         #region Properties
@@ -129,6 +135,20 @@ namespace DataConcentrator.Analog
                                     al.AlarmOn = true;
                                     Status = AnalogInputStatus.ALARMING;
                                     ValueChangedToCritical?.Invoke(al.Id);
+                                    al.TimeStamp = DateTime.Now;
+                                    //if alarm trigered for the first time
+                                    if (al.lastTimeActivated == null)
+                                    {
+                                        al.lastTimeActivated = DateTime.Now;
+                                    }
+
+                                    if (al.TimeStamp >= al.lastTimeActivated.Add(tresholdLowValue))
+                                    {
+                                        File.AppendAllText(path, al.alarmForTextFile());
+
+                                        tresholdLowValue = TimeSpan.FromMinutes(delayAlarmFor);
+                                        al.lastTimeActivated = DateTime.Now;
+                                    }
                                 }
 
                                 else
@@ -146,6 +166,21 @@ namespace DataConcentrator.Analog
                                     al.AlarmOn = true;
                                     Status = AnalogInputStatus.ALARMING;
                                     ValueChangedToCritical?.Invoke(al.Id);
+                                    al.TimeStamp = DateTime.Now;
+                                    
+                                    //if alarm trigered for the first time
+                                    if (al.lastTimeActivated == null)
+                                    {
+                                        al.lastTimeActivated = DateTime.Now;
+                                    }
+
+                                    if (al.TimeStamp >= al.lastTimeActivated.Add(tresholdHighValue))
+                                    {
+                                        File.AppendAllText(path, al.alarmForTextFile());
+
+                                        tresholdHighValue = TimeSpan.FromMinutes(delayAlarmFor);
+                                        al.lastTimeActivated = DateTime.Now;
+                                    }
                                 }
 
                                 else
