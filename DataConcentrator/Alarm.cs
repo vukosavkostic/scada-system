@@ -131,6 +131,18 @@ namespace DataConcentrator
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
+
+        public override string ToString()
+        {
+            string retVal = "";
+            retVal += $"Alarm ID: {Id}\n\n"
+                    + $"Alarm Limit Value: {LimitValue}\n\n"
+                    + $"Alarm Message: {AlarmMessage}\n\n"
+                    + $"Alarm TimeStamp: {TimeStamp}\n\n"
+                    + $"Analog Input: {AnalogInputTagName}\n\n";
+
+            return retVal;
+        }
         #endregion
     }
 }

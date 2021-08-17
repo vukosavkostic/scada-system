@@ -29,22 +29,27 @@ namespace ScadaGUI
 
     public partial class MainWindow : Window
     {
-        public Alarm SelectedAlarm { get; set; }
-        public AnalogInput SelectedTag { get; set; }
-        private Thread mainThread;
-        private IEnumerable<ViewModelTag> viewData;
+        public static Alarm SelectedAlarm { get; set; }
+        public static AnalogInput SelectedTag { get; set; }
+        private Thread dataThread;
+        private object locker = new object();
+
 
         public MainWindow()
         {
             InitializeComponent();
-            mainThread = new Thread(MakeViewData);
-            mainThread.Start();
-            StartScan();
-
+            //dataThread = new Thread(MakeViewData);
+            //dataThread.Start();
 
             ScadaContext.Instance.Alarms.Load();
             this.AlarmGrid.ItemsSource = ScadaContext.Instance.Alarms.Local;
 
+            ScadaContext.Instance.AnalogInputs.Load();
+            this.DataGrid.ItemsSource = ScadaContext.Instance.AnalogInputs.Local;
+
+            StartScan();
+
+            this.DataContext = this;
 
 
 
@@ -61,7 +66,7 @@ namespace ScadaGUI
 
         private void ExitMainWindow(object sender, RoutedEventArgs e)
         {
-            mainThread.Abort();
+
             foreach (AnalogInput ai in ScadaContext.Instance.AnalogInputs)
             {
                 ai.StopAIThread();
@@ -71,9 +76,10 @@ namespace ScadaGUI
             {
                 di.StopDThread();
             }
-
-            ScadaContext.Instance.Dispose();
+            //dataThread.Abort();
             PLCContext.Instance.Abort();
+            ScadaContext.Instance.Dispose();
+
   
 
             this.Close();
@@ -95,77 +101,120 @@ namespace ScadaGUI
 
         }
 
+        private void DeleteTag(object sender, RoutedEventArgs e)
+        {
+            if (SelectedTag != null)
+            {
+                ScadaContext.Instance.AnalogInputs.Remove(SelectedTag);
+                ScadaContext.Instance.SaveChanges();
+            }
+            else
+            {
+                MessageBox.Show("You didn't select tag to delete...");
+            }
+            
+        }
+
+        private void DeleteAlarm(object sender, RoutedEventArgs e)
+        {
+            if (SelectedAlarm != null)
+            {
+                ScadaContext.Instance.Alarms.Remove(SelectedAlarm);
+                ScadaContext.Instance.SaveChanges();
+            }
+
+            else
+            {
+                MessageBox.Show("You didn't select alarm to delete...");
+            }
+        }
+
+        private void TagDetails(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(SelectedTag.ToString());
+        }
+
+        private void AlarmDetails(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(SelectedAlarm.ToString());
+        }
+
+        /*
         private void MakeViewData(object obj)
         {
 
             while (true)
             {
-                ScadaContext.Instance.AnalogInputs.Load();
+                lock (locker)
+                {
+                    ScadaContext.Instance.AnalogInputs.Load();
 
-                IEnumerable<ViewModelTag> AnalogInputViewModel =
-                    from aiV in ScadaContext.Instance.AnalogInputs.Local
-                    select new ViewModelTag
-                    {
-                        Id = aiV.Id,
-                        TagType = aiV.TagType,
-                        Address = aiV.IOAddress,
-                        Value = aiV.Value,
-                        Unit = aiV.Unit
-                    };
+                    IEnumerable<ViewModelTag> AnalogInputViewModel =
+                        from aiV in ScadaContext.Instance.AnalogInputs.Local
+                        select new ViewModelTag
+                        {
+                            Id = aiV.Id,
+                            TagType = aiV.TagType,
+                            Address = aiV.IOAddress,
+                            Value = aiV.Value,
+                            Unit = aiV.Unit
+                        };
 
-                ScadaContext.Instance.AnalogOutputs.Load();
+                    ScadaContext.Instance.AnalogOutputs.Load();
 
-                IEnumerable<ViewModelTag> AnalogOutputViewModel =
-                    from aoV in ScadaContext.Instance.AnalogOutputs.Local
-                    select new ViewModelTag
-                    {
-                        Id = aoV.Id,
-                        TagType = aoV.TagType,
-                        Address = aoV.IOAddress,
-                        Value = aoV.InitialValue,
-                        Unit = "/"
-                    };
+                    IEnumerable<ViewModelTag> AnalogOutputViewModel =
+                        from aoV in ScadaContext.Instance.AnalogOutputs.Local
+                        select new ViewModelTag
+                        {
+                            Id = aoV.Id,
+                            TagType = aoV.TagType,
+                            Address = aoV.IOAddress,
+                            Value = aoV.InitialValue,
+                            Unit = aoV.Unit
+                        };
 
-                ScadaContext.Instance.DigitalInputs.Load();
+                    ScadaContext.Instance.DigitalInputs.Load();
 
-                IEnumerable<ViewModelTag> DigitalInputViewModel =
-                    from diV in ScadaContext.Instance.DigitalInputs.Local
-                    select new ViewModelTag
-                    {
-                        Id = diV.Id,
-                        TagType = diV.TagType,
-                        Address = diV.IOAddress,
-                        Value = diV.Value ? 1 : 0,
-                        Unit = "/"
-                    };
+                    IEnumerable<ViewModelTag> DigitalInputViewModel =
+                        from diV in ScadaContext.Instance.DigitalInputs.Local
+                        select new ViewModelTag
+                        {
+                            Id = diV.Id,
+                            TagType = diV.TagType,
+                            Address = diV.IOAddress,
+                            Value = diV.Value ? 1 : 0,
+                            Unit = "/"
+                        };
 
-                ScadaContext.Instance.DigitalOutputs.Load();
+                    ScadaContext.Instance.DigitalOutputs.Load();
 
-                IEnumerable<ViewModelTag> DigitalOutputViewModel =
-                      from doV in ScadaContext.Instance.DigitalOutputs.Local
-                      select new ViewModelTag
-                      {
-                          Id = doV.Id,
-                          TagType = doV.TagType,
-                          Address = doV.IOAddress,
-                          Value = doV.InitialValue,
-                          Unit = "/"
-                      };
+                    IEnumerable<ViewModelTag> DigitalOutputViewModel =
+                          from doV in ScadaContext.Instance.DigitalOutputs.Local
+                          select new ViewModelTag
+                          {
+                              Id = doV.Id,
+                              TagType = doV.TagType,
+                              Address = doV.IOAddress,
+                              Value = doV.InitialValue,
+                              Unit = "/"
+                          };
 
-                var CombinedViewModel = AnalogInputViewModel.Concat(AnalogOutputViewModel).Concat(DigitalInputViewModel).Concat(DigitalOutputViewModel);
-                Dispatcher.BeginInvoke(
-                    DispatcherPriority.Normal,
-                    (Action)delegate
-                    {
-                        this.DataGrid.ItemsSource = CombinedViewModel.ToList();
-                    });
-
-                Thread.Sleep(300);
+                    var CombinedViewModel = AnalogInputViewModel.Concat(AnalogOutputViewModel).Concat(DigitalInputViewModel).Concat(DigitalOutputViewModel);
+                    Dispatcher.BeginInvoke(
+                        DispatcherPriority.Normal,
+                        (Action)delegate
+                        {
+                            this.DataGrid.ItemsSource = CombinedViewModel.ToList();
+                        });
+                }
+                
+                Thread.Sleep(500);
+                
             }
             
             
         }
-
+        */
         private void StartScan()
         {
             foreach (AnalogInput ai in ScadaContext.Instance.AnalogInputs)

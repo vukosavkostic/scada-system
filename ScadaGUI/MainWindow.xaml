@@ -147,7 +147,8 @@
                         VerticalAlignment="Top"
                         Margin="0,8,0,0"
                         Width="55"
-                        Height="30" Click="DarkMode_Clicked">
+                        Height="30"
+                        Click="DarkMode_Clicked">
                     <materialDesign:PackIcon Kind="LightbulbOn"/>
                 </Button>
                 <Label 
@@ -168,14 +169,25 @@
               materialDesign:ShadowAssist.ShadowDepth="Depth2"
               Padding="32"
               Grid.Row="2"/>
-        <DataGrid Grid.Row="2"  Name ="DataGrid"  SelectedItem="{Binding SelectedTag}" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False">
+        <DataGrid Grid.Row="2"  Name ="DataGrid"  SelectedItem="{Binding SelectedTag, Mode=TwoWay}" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Tag ID" Binding="{Binding Id}" Width="*"/>
                 <DataGridTextColumn Header="Tag Type" Binding="{Binding TagType}" Width="*"/>
-                <DataGridTextColumn Header="Address" Binding="{Binding Address}" Width="*"/>
+                <DataGridTextColumn Header="Address" Binding="{Binding IOAddress}" Width="*"/>
                 <DataGridTextColumn Header="Value" Binding="{Binding Value}" Width="*"/>
                 <DataGridTextColumn Header="Unit" Binding="{Binding Unit}" Width="*"/>
             </DataGrid.Columns>
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Details" Click="TagDetails"/>
+                    <MenuItem Header="Delete" Click="DeleteTag"/>
+                    <MenuItem Name="ChangeValue" 
+                              Header="Change Value"
+                              Click="TagDetails">
+      
+                    </MenuItem>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
         </DataGrid>
         <materialDesign:Card
                   materialDesign:ShadowAssist.ShadowDepth="Depth1"
@@ -184,19 +196,25 @@
                   Grid.Row="1"/>
         <Rectangle Grid.Row="1" Fill="#cfd8dc"/>
         <Label Grid.Row="1" Content="Tag List" Margin="25, 0, 0, 0" HorizontalAlignment="Center" FontWeight="DemiBold"/>
-
+        
         <StackPanel Orientation="Vertical" Grid.Row="3" Margin="0,5,0,0">
             <Grid Height="25">
                 <Rectangle Fill="#f5f5f5"/>
                 <Label Content="Alarm List" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="ExtraLight"/>
             </Grid>
-            <DataGrid Name ="AlarmGrid" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False">
+            <DataGrid Name ="AlarmGrid" SelectedItem="{Binding SelectedAlarm}" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" MaxHeight="250">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Alarm Name" Binding="{Binding Id}" Width="*"/>
                     <DataGridTextColumn Header="Limit Value" Binding="{Binding LimitValue}" Width="*"/>
                     <DataGridTextColumn Header="Alarm Message" Binding="{Binding AlarmMessage}" Width="*"/>
                     <DataGridTextColumn Header="Time Stamp" Binding="{Binding TimeStamp}" Width="*"/>
                 </DataGrid.Columns>
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Details" Click="AlarmDetails"/>
+                        <MenuItem Header="Delete" Click="DeleteAlarm"/>
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
                 <DataGrid.RowStyle>
                     <Style TargetType="DataGridRow">
                         <Style.Triggers>
@@ -213,6 +231,5 @@
 
             </DataGrid>
         </StackPanel>
-            
     </Grid>
 </Window>

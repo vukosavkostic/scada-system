@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -164,6 +165,32 @@ namespace DataConcentrator.Analog
                 Thread.Sleep(ScanTime);
 
             }
+        }
+
+        public override string ToString()
+        {
+            string retVal = "";
+            retVal += $"ID: {Id}\n\n"
+                   + $"Description: {Description}\n\n"
+                   + $"Type: {TagType}\n\n"
+                   + $"Address: {IOAddress}\n\n"
+                   + $"Scan Time: {ScanTime}\n\n"
+                   + $"Unit: {Unit}\n\n"
+                   + $"Value: {Value}\n\n";
+
+            return retVal;
+        }
+
+        public string AlarmList()
+        {
+            string retVal = "";
+
+            foreach (var alarm in Alarms)
+            {
+                retVal += $"Name: {alarm.Id} Limit: {alarm.LimitValue}  Type: {alarm.AlarmType}\n";
+            }
+
+            return retVal;
         }
         #endregion
 
