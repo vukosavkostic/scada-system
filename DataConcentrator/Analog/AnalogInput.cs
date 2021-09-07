@@ -1,4 +1,5 @@
-﻿using PLCSimulator;
+﻿using DataConcentrator.Digital;
+using PLCSimulator;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -120,81 +121,104 @@ namespace DataConcentrator.Analog
         {
             while(true)
             {
-                lock (locker)
+                try
                 {
-                    Value = ((PLCSimulatorManager)obj).GetAnalogValue(IOAddress);
-
-                    if (Alarms != null)
+                    lock (locker)
                     {
-                        foreach (Alarm al in Alarms)
+                        Value = ((PLCSimulatorManager)obj).GetAnalogValue(IOAddress);
+
+                        if (Alarms != null)
                         {
-                            if (al.AlarmType == ALARM_TYPE.LowValueAlarm)
+                            foreach (Alarm al in Alarms)
                             {
-                                if (Value <= al.LimitValue)
+                                if (al.AlarmType == ALARM_TYPE.LowValueAlarm)
                                 {
-                                    al.AlarmOn = true;
-                                    Status = AnalogInputStatus.ALARMING;
-                                    ValueChangedToCritical?.Invoke(al.Id);
-                                    al.TimeStamp = DateTime.Now;
-                                    //if alarm trigered for the first time
-                                    if (al.lastTimeActivated == null)
+                                    if (Value <= al.LimitValue)
                                     {
-                                        al.lastTimeActivated = DateTime.Now;
+                                        al.AlarmOn = true;
+                                        Status = AnalogInputStatus.ALARMING;
+                                        ValueChangedToCritical?.Invoke(al.Id);
+                                        al.TimeStamp = DateTime.Now;
+                                        //if alarm trigered for the first time
+                                        if (al.lastTimeActivated == null)
+                                        {
+                                            al.lastTimeActivated = DateTime.Now;
+                                        }
+
+                                        if (al.TimeStamp >= al.lastTimeActivated.Add(tresholdLowValue))
+                                        {
+                                            File.AppendAllText(path, al.alarmForTextFile());
+
+                                            tresholdLowValue = TimeSpan.FromMinutes(delayAlarmFor);
+                                            al.lastTimeActivated = DateTime.Now;
+                                        }
                                     }
 
-                                    if (al.TimeStamp >= al.lastTimeActivated.Add(tresholdLowValue))
+                                    else
                                     {
-                                        File.AppendAllText(path, al.alarmForTextFile());
-
-                                        tresholdLowValue = TimeSpan.FromMinutes(delayAlarmFor);
-                                        al.lastTimeActivated = DateTime.Now;
+                                        al.AlarmOn = false;
+                                        Status = AnalogInputStatus.REGULAR;
                                     }
+
                                 }
 
-                                else
+                                if (al.AlarmType == ALARM_TYPE.HighValueAlarm)
                                 {
-                                    al.AlarmOn = false;
-                                    Status = AnalogInputStatus.REGULAR;
+                                    if (Value >= al.LimitValue)
+                                    {
+                                        al.AlarmOn = true;
+                                        Status = AnalogInputStatus.ALARMING;
+                                        ValueChangedToCritical?.Invoke(al.Id);
+                                        al.TimeStamp = DateTime.Now;
+
+                                        //if alarm trigered for the first time
+                                        if (al.lastTimeActivated == null)
+                                        {
+                                            al.lastTimeActivated = DateTime.Now;
+                                        }
+
+                                        if (al.TimeStamp >= al.lastTimeActivated.Add(tresholdHighValue))
+                                        {
+                                            File.AppendAllText(path, al.alarmForTextFile());
+
+                                            tresholdHighValue = TimeSpan.FromMinutes(delayAlarmFor);
+                                            al.lastTimeActivated = DateTime.Now;
+                                        }
+                                    }
+
+                                    else
+                                    {
+                                        al.AlarmOn = false;
+                                        Status = AnalogInputStatus.REGULAR;
+                                    }
+
                                 }
 
                             }
-
-                            if (al.AlarmType == ALARM_TYPE.HighValueAlarm)
-                            {
-                                if (Value >= al.LimitValue)
-                                {
-                                    al.AlarmOn = true;
-                                    Status = AnalogInputStatus.ALARMING;
-                                    ValueChangedToCritical?.Invoke(al.Id);
-                                    al.TimeStamp = DateTime.Now;
-                                    
-                                    //if alarm trigered for the first time
-                                    if (al.lastTimeActivated == null)
-                                    {
-                                        al.lastTimeActivated = DateTime.Now;
-                                    }
-
-                                    if (al.TimeStamp >= al.lastTimeActivated.Add(tresholdHighValue))
-                                    {
-                                        File.AppendAllText(path, al.alarmForTextFile());
-
-                                        tresholdHighValue = TimeSpan.FromMinutes(delayAlarmFor);
-                                        al.lastTimeActivated = DateTime.Now;
-                                    }
-                                }
-
-                                else
-                                {
-                                    al.AlarmOn = false;
-                                    Status = AnalogInputStatus.REGULAR;
-                                }
-
-                            }
-
                         }
+
+
+                    }
+                    
+                }
+
+                finally 
+                {   /*
+                    foreach (AnalogInput ai in ScadaContext.Instance.AnalogInputs)
+                    {
+                        ai.StopAIThread();
                     }
 
+                    foreach (DigitalInput di in ScadaContext.Instance.DigitalInputs)
+                    {
+                        di.StopDThread();
+                    }
+                    //dataThread.Abort();
 
+
+                    PLCContext.Instance.Abort();
+                    ScadaContext.Instance.Dispose();
+                    */
                 }
 
                 Thread.Sleep(ScanTime);

@@ -48,6 +48,8 @@ namespace ScadaGUI
             ScadaContext.Instance.AnalogInputs.Load();
             this.DataGrid.ItemsSource = ScadaContext.Instance.AnalogInputs.Local;
 
+
+            
             StartScan();
 
             this.DataContext = this;
@@ -63,22 +65,6 @@ namespace ScadaGUI
 
         private void ExitMainWindow(object sender, RoutedEventArgs e)
         {
-
-            foreach (AnalogInput ai in ScadaContext.Instance.AnalogInputs)
-            {
-                ai.StopAIThread();
-            }
-
-            foreach (DigitalInput di in ScadaContext.Instance.DigitalInputs)
-            {
-                di.StopDThread();
-            }
-            //dataThread.Abort();
-            PLCContext.Instance.Abort();
-            ScadaContext.Instance.Dispose();
-
-  
-
             this.Close();
         }
 
@@ -97,6 +83,26 @@ namespace ScadaGUI
         private void DarkMode_Clicked(object sender, RoutedEventArgs e)
         {
 
+        }
+        
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+           foreach (AnalogInput ai in ScadaContext.Instance.AnalogInputs)
+            {
+                ai.StopAIThread();
+            }
+
+            foreach (DigitalInput di in ScadaContext.Instance.DigitalInputs)
+            {
+                di.StopDThread();
+            }
+            //dataThread.Abort();
+            
+            
+            PLCContext.Instance.Abort();
+            //ScadaContext.Instance.Dispose();
+            ScadaContext.Instance.Database.Connection.Close();
         }
 
         private void DeleteTag(object sender, RoutedEventArgs e)

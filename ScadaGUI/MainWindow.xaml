@@ -13,7 +13,7 @@
         TextOptions.TextRenderingMode="Auto"
         Background="#efeff1"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="SCADA" Height="800" Width="1240" MinHeight="800" MinWidth="1240">
+        Title="SCADA" Height="800" Width="1240" MinHeight="800" MinWidth="1240" Closing="Window_Closing">
 
 
     <Grid Margin="10">
