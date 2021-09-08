@@ -31,8 +31,12 @@ namespace ScadaGUI
     public partial class MainWindow : Window
     {
         public static Alarm SelectedAlarm { get; set; }
-        public static AnalogInput SelectedTag { get; set; }
-        private Thread dataThread;
+        public static AnalogInput SelectedAi { get; set; }
+        public static AnalogOutput SelectedAo { get; set; }
+        public static DigitalInput SelectedDi { get; set; }
+        public static DigitalOutput SelectedDo { get; set; }
+
+        public bool ChangeValueDoVar { get; set; }
         private object locker = new object();
 
         public MainWindow()
@@ -46,7 +50,19 @@ namespace ScadaGUI
             this.AlarmGrid.ItemsSource = ScadaContext.Instance.Alarms.Local;
 
             ScadaContext.Instance.AnalogInputs.Load();
-            this.DataGrid.ItemsSource = ScadaContext.Instance.AnalogInputs.Local;
+            this.AiDataGrid.ItemsSource = ScadaContext.Instance.AnalogInputs.Local;
+
+            ScadaContext.Instance.AnalogOutputs.Load();
+            this.AoDataGrid.ItemsSource = ScadaContext.Instance.AnalogOutputs.Local;
+
+            ScadaContext.Instance.DigitalInputs.Load();
+            this.DiDataGrid.ItemsSource = ScadaContext.Instance.DigitalInputs.Local;
+
+            ScadaContext.Instance.DigitalOutputs.Load();
+            this.DoDataGrid.ItemsSource = ScadaContext.Instance.DigitalOutputs.Local;
+
+
+
 
 
             
@@ -105,18 +121,18 @@ namespace ScadaGUI
             ScadaContext.Instance.Database.Connection.Close();
         }
 
-        private void DeleteTag(object sender, RoutedEventArgs e)
+        private void AiTagDelete(object sender, RoutedEventArgs e)
         {
-            if (SelectedTag != null)
+            if (SelectedAi != null)
             {
-                ScadaContext.Instance.AnalogInputs.Remove(SelectedTag);
+                ScadaContext.Instance.AnalogInputs.Remove(SelectedAi);
                 ScadaContext.Instance.SaveChanges();
             }
             else
             {
                 MessageBox.Show("You didn't select tag to delete...");
             }
-            
+
         }
 
         private void DeleteAlarm(object sender, RoutedEventArgs e)
@@ -133,15 +149,149 @@ namespace ScadaGUI
             }
         }
 
-        private void TagDetails(object sender, RoutedEventArgs e)
+        private void AiTagDetails(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(SelectedTag.ToString());
+            if (SelectedAi != null)
+            {
+                MessageBox.Show(SelectedAi.ToString());
+            }
+            
+            else
+            {
+                MessageBox.Show("You didn't select tag");
+            }    
         }
 
         private void AlarmDetails(object sender, RoutedEventArgs e)
         {
             MessageBox.Show(SelectedAlarm.ToString());
         }
+
+        private void AoTagDelete(object sender, RoutedEventArgs e)
+        {
+            if (SelectedAo != null)
+            {
+                ScadaContext.Instance.AnalogOutputs.Remove(SelectedAo);
+                ScadaContext.Instance.SaveChanges();
+            }
+            else
+            {
+                MessageBox.Show("You didn't select tag to delete...");
+            }
+
+        }
+
+        private void AoTagDetails(object sender, RoutedEventArgs e)
+        {
+            if (SelectedAo != null)
+            {
+                MessageBox.Show(SelectedAo.ToString());
+            }
+
+            else
+            {
+                MessageBox.Show("You didn't select tag");
+            }
+        }
+
+        private void ChangeAoValueMet(object sender, RoutedEventArgs e)
+        {
+            ChangeValueAo ao = new ChangeValueAo(SelectedAo);
+            ao.ShowDialog();
+            
+        }
+
+
+        private void DiTagDelete(object sender, RoutedEventArgs e)
+        {
+            if (SelectedDi != null)
+            {
+                ScadaContext.Instance.DigitalInputs.Remove(SelectedDi);
+                ScadaContext.Instance.SaveChanges();
+            }
+            else
+            {
+                MessageBox.Show("You didn't select tag to delete...");
+            }
+
+        }
+
+        private void DiTagDetails(object sender, RoutedEventArgs e)
+        {
+            if (SelectedDi != null)
+            {
+                MessageBox.Show(SelectedDi.ToString());
+            }
+
+            else
+            {
+                MessageBox.Show("You didn't select tag");
+            }
+        }
+
+        private void DoTagDelete(object sender, RoutedEventArgs e)
+        {
+            if (SelectedDo != null)
+            {
+                ScadaContext.Instance.DigitalOutputs.Remove(SelectedDo);
+                ScadaContext.Instance.SaveChanges();
+            }
+            else
+            {
+                MessageBox.Show("You didn't select tag to delete...");
+            }
+
+        }
+
+        private void DoTagDetails(object sender, RoutedEventArgs e)
+        {
+            if (SelectedDo != null)
+            {
+                MessageBox.Show(SelectedDo.ToString());
+            }
+
+            else
+            {
+                MessageBox.Show("You didn't select tag");
+            }
+        }
+
+        private void ChangeDoValueMet(object sender, RoutedEventArgs e)
+        {
+            ChangeValueDo doWin = new ChangeValueDo(SelectedDo);
+            doWin.ShowDialog();
+        }
+
+
+        private void AiSelection(object sender, MouseButtonEventArgs args)
+        {
+            SelectedAo = null;
+            SelectedDi = null;
+            SelectedDo = null;
+        }
+
+        private void AoSelection(object sender, MouseButtonEventArgs args)
+        {
+            SelectedAi = null;
+            SelectedDi = null;
+            SelectedDo = null;
+        }
+
+        private void DiSelection(object sender, MouseButtonEventArgs args)
+        {
+            SelectedAi = null;
+            SelectedAo = null;
+            SelectedDo = null;
+        }
+
+        private void DoSelection(object sender, MouseButtonEventArgs args)
+        {
+            SelectedAi = null;
+            SelectedAo = null;
+            SelectedDi = null;
+        }
+
+
 
         /*
         private void MakeViewData(object obj)

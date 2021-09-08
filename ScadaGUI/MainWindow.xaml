@@ -13,6 +13,8 @@
         TextOptions.TextRenderingMode="Auto"
         Background="#efeff1"
         FontFamily="{DynamicResource MaterialDesignFont}"
+        WindowState="Maximized"
+        WindowStyle="None"
         Title="SCADA" Height="800" Width="1240" MinHeight="800" MinWidth="1240" Closing="Window_Closing">
 
 
@@ -169,36 +171,165 @@
               materialDesign:ShadowAssist.ShadowDepth="Depth2"
               Padding="32"
               Grid.Row="2"/>
-        <DataGrid Grid.Row="2"  Name ="DataGrid"  SelectedItem="{Binding SelectedTag, Mode=TwoWay}" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Tag ID" Binding="{Binding Id}" Width="*"/>
-                <DataGridTextColumn Header="Tag Type" Binding="{Binding TagType}" Width="*"/>
-                <DataGridTextColumn Header="Address" Binding="{Binding IOAddress}" Width="*"/>
-                <DataGridTextColumn Header="Value" Binding="{Binding Value}" Width="*"/>
-                <DataGridTextColumn Header="Unit" Binding="{Binding Unit}" Width="*"/>
-            </DataGrid.Columns>
-            <DataGrid.ContextMenu>
-                <ContextMenu>
-                    <MenuItem Header="Details" Click="TagDetails">
-                        <MenuItem.Icon>
-                            <materialDesign:PackIcon Kind="DotsHorizontalCircle" />
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <MenuItem Header="Delete" Click="DeleteTag">
-                        <MenuItem.Icon>
-                            <materialDesign:PackIcon Kind="DeleteCircle"/>
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <MenuItem Name="ChangeValue" 
+        <StackPanel Grid.Row="2" Orientation="Vertical">
+            <Grid>
+                <Rectangle Fill="#cfd8dc"/>
+                <Label Content="ANALOG INPUT" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" Foreground="Gray" Margin="20,0,0,0"/>
+            </Grid>
+
+            <DataGrid Name ="AiDataGrid"  SelectedItem="{Binding SelectedAi, Mode=TwoWay}" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Tag ID" Binding="{Binding Id}" Width="*"/>
+                    <DataGridTextColumn Header="Tag Type" Binding="{Binding TagType}" Width="*"/>
+                    <DataGridTextColumn Header="Address" Binding="{Binding IOAddress}" Width="*"/>
+                    <DataGridTextColumn Header="Value" Binding="{Binding Value}" Width="*"/>
+                    <DataGridTextColumn Header="Unit" Binding="{Binding Unit}" Width="*"/>
+                </DataGrid.Columns>
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Details" Click="AiTagDetails">
+                            <MenuItem.Icon>
+                                <materialDesign:PackIcon Kind="DotsHorizontalCircle" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Delete" Click="AiTagDelete">
+                            <MenuItem.Icon>
+                                <materialDesign:PackIcon Kind="DeleteCircle"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+
+                <DataGrid.ItemContainerStyle>
+                    <Style TargetType="DataGridRow">
+                        <EventSetter Event="MouseLeftButtonDown" Handler="AiSelection"/>
+                    </Style>
+                </DataGrid.ItemContainerStyle>
+            </DataGrid>
+
+            <Grid>
+                <Rectangle Fill="#cfd8dc"/>
+                <Label Content="ANALOG OUTPUT" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" Foreground="Gray" Margin="20,0,0,0"/>
+            </Grid>
+
+            <DataGrid Name="AoDataGrid" SelectedItem="{Binding SelectedAo, Mode=TwoWay}" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Tag ID" Binding="{Binding Id}" Width="*"/>
+                    <DataGridTextColumn Header="Tag Type" Binding="{Binding TagType}" Width="*"/>
+                    <DataGridTextColumn Header="Address" Binding="{Binding IOAddress}" Width="*"/>
+                    <DataGridTextColumn Header="Value" Binding="{Binding InitialValue}" Width="*"/>
+                    <DataGridTextColumn Header="Unit" Binding="{Binding Unit}" Width="*"/>
+                </DataGrid.Columns>
+
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Details" Click="AoTagDetails">
+                            <MenuItem.Icon>
+                                <materialDesign:PackIcon Kind="DotsHorizontalCircle" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Delete" Click="AoTagDelete">
+                            <MenuItem.Icon>
+                                <materialDesign:PackIcon Kind="DeleteCircle"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Name="ChangeValue" 
                               Header="Change Value"
-                              Click="TagDetails">
-                        <MenuItem.Icon>
-                            <materialDesign:PackIcon Kind="FlashCircle" />
-                        </MenuItem.Icon>
-                    </MenuItem>
-                </ContextMenu>
-            </DataGrid.ContextMenu>
-        </DataGrid>
+                              Click="ChangeAoValueMet">
+                            <MenuItem.Icon>
+                                <materialDesign:PackIcon Kind="FlashCircle" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+
+                <DataGrid.ItemContainerStyle>
+                    <Style TargetType="DataGridRow">
+                        <EventSetter Event="MouseLeftButtonDown" Handler="AoSelection"/>
+                    </Style>
+                </DataGrid.ItemContainerStyle>
+
+            </DataGrid>
+            
+            <Grid>
+                <Rectangle Fill="#cfd8dc"/>
+                <Label Content="DIGITAL INPUT" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" Foreground="Gray" Margin="20,0,0,0"/>
+            </Grid>
+
+            <DataGrid Name="DiDataGrid" SelectedItem="{Binding SelectedDi, Mode=TwoWay}" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Tag ID" Binding="{Binding Id}" Width="*"/>
+                    <DataGridTextColumn Header="Tag Type" Binding="{Binding TagType}" Width="*"/>
+                    <DataGridTextColumn Header="Address" Binding="{Binding IOAddress}" Width="*"/>
+                    <DataGridTextColumn Header="Value" Binding="{Binding Value}" Width="*"/>
+                </DataGrid.Columns>
+
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Details" Click="DiTagDetails">
+                            <MenuItem.Icon>
+                                <materialDesign:PackIcon Kind="DotsHorizontalCircle" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Delete" Click="DiTagDelete">
+                            <MenuItem.Icon>
+                                <materialDesign:PackIcon Kind="DeleteCircle"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+
+                <DataGrid.ItemContainerStyle>
+                    <Style TargetType="DataGridRow">
+                        <EventSetter Event="MouseLeftButtonDown" Handler="DiSelection"/>
+                    </Style>
+                </DataGrid.ItemContainerStyle>
+
+            </DataGrid>
+
+            <Grid>
+                <Rectangle Fill="#cfd8dc"/>
+                <Label Content="DIGITAL OUTPUT" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" Foreground="Gray" Margin="20,0,0,0"/>
+            </Grid>
+
+            <DataGrid Name="DoDataGrid" SelectedItem="{Binding SelectedDo, Mode=TwoWay}" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Tag ID" Binding="{Binding Id}" Width="*"/>
+                        <DataGridTextColumn Header="Tag Type" Binding="{Binding TagType}" Width="*"/>
+                        <DataGridTextColumn Header="Address" Binding="{Binding IOAddress}" Width="*"/>
+                        <DataGridTextColumn Header="Value" Binding="{Binding InitialValue}" Width="*"/>
+                    </DataGrid.Columns>
+
+                    <DataGrid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Details" Click="DoTagDetails">
+                                <MenuItem.Icon>
+                                    <materialDesign:PackIcon Kind="DotsHorizontalCircle" />
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem Header="Delete" Click="DoTagDelete">
+                                <MenuItem.Icon>
+                                    <materialDesign:PackIcon Kind="DeleteCircle"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem
+                                  Header="Change Value"
+                                  Click="ChangeDoValueMet">
+                                <MenuItem.Icon>
+                                    <materialDesign:PackIcon Kind="FlashCircle" />
+                                </MenuItem.Icon>
+                            </MenuItem>
+                    </ContextMenu>
+                    </DataGrid.ContextMenu>
+
+                    <DataGrid.ItemContainerStyle>
+                        <Style TargetType="DataGridRow">
+                            <EventSetter Event="MouseLeftButtonDown" Handler="DoSelection"/>
+                        </Style>
+                    </DataGrid.ItemContainerStyle>
+
+                </DataGrid>
+        </StackPanel>
         <materialDesign:Card
                   materialDesign:ShadowAssist.ShadowDepth="Depth1"
                   Padding="32"

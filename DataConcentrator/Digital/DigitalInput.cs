@@ -63,6 +63,20 @@ namespace DataConcentrator.Digital
             }
 
         }
+
+        public override string ToString()
+        {
+            string retVal = "";
+            retVal += $"ID: {Id}\n\n"
+                   + $"Description: {Description}\n\n"
+                   + $"Type: {TagType}\n\n"
+                   + $"Address: {IOAddress}\n\n"
+                   + $"Scan Time: {ScanTime}\n\n"
+                   + $"Value: {Value}\n\n";
+
+            return retVal;
+        }
+
         #endregion
     }
 }
